@@ -1028,7 +1028,7 @@ def _format_counterpart(label, entry, color_class=""):
         return ""
     lines = [
         f"{label}: Section {entry.get('section')} — {entry.get('title','')}",
-        f"Definition : {entry.get('content','')}",
+        f"Definition : {_short(entry.get('content',''))}",
         f"Punishment : {entry.get('punishment','Not specified')}",
         f"Source : {entry.get('source','')}",
     ]
@@ -1041,6 +1041,20 @@ def _format_counterpart(label, entry, color_class=""):
 # =====================================================
 # GROUNDED ANSWER (NO HALLUCINATION)
 # =====================================================
+def _short(text, limit=180):
+    """Trim long statutory text for the concise Legal Analysis summary,
+    breaking on a sentence/word boundary. Full text still shows in the cards."""
+    text = re.sub(r"\s+", " ", str(text or "")).strip()
+    if len(text) <= limit:
+        return text
+    cut = text[:limit]
+    b = max(cut.rfind(". "), cut.rfind("; "))
+    if b > limit * 0.5:
+        return cut[:b + 1] + " …"
+    sp = cut.rfind(" ")
+    return (cut[:sp] if sp > 0 else cut) + " …"
+
+
 def grounded_answer(query, statutes):
     if not statutes:
         return "No relevant legal provision found."
@@ -1050,12 +1064,11 @@ def grounded_answer(query, statutes):
     law = top.get("law", "")
     section = top.get("section", "")
     punishment = top.get("punishment", "Not specified")
-    content = top.get("content", "")
+    content = _short(top.get("content", ""))
 
     return (
-        f"According to {law} Section {section},\n\n"
-        f"Definition: {content}\n\n"
-        f"Punishment: {punishment}"
+        f"**{law} Section {section}** — {content}\n\n"
+        f"**Punishment:** {punishment}"
     )
 
 def filter_hallucination(answer, statutes):
@@ -1098,12 +1111,9 @@ def generate_answer(query, statutes, web_results, selected_date):
             vu = s.get("valid_until", "9999-12-31")
             validity = f"{vf} → {'Present' if vu == '9999-12-31' else vu}"
             block = [
-                f"**{s['title']}**",
-                f"Category : {s.get('category', '')}",
-                f"Definition : {s.get('content', s.get('text',''))}",
-                f"Punishment : {s.get('punishment', 'Not specified')}",
-                f"Source : {s.get('source', '')}",
-                f"In force : {validity}",
+                f"**{s['title']}** — {_short(s.get('content', s.get('text','')))}",
+                f"**Punishment:** {s.get('punishment', 'Not specified')}",
+                f"**In force:** {validity}",
             ]
             ipc = s.get("ipc_counterpart")
             bns = s.get("bns_counterpart")
@@ -1730,7 +1740,7 @@ if analyze and query:
                             '<div class="counterpart-block counterpart-ipc">'
                             '<div class="counterpart-label">Previous Law — IPC</div>'
                             f'<div class="counterpart-title">Section {ipc.get("section")} — {ipc.get("title","")}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {ipc.get("content","")}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {_short(ipc.get("content",""))}</div>'
                             f'<div class="counterpart-row"><span class="field-label">Punishment</span> {ipc.get("punishment","Not specified")}</div>'
                             f'<div class="counterpart-row"><span class="field-label">Source</span> {ipc.get("source","Indian Penal Code, 1860")}</div>'
                             '</div>'
@@ -1740,7 +1750,7 @@ if analyze and query:
                             '<div class="counterpart-block counterpart-bns">'
                             '<div class="counterpart-label">New Law — BNS</div>'
                             f'<div class="counterpart-title">Section {bns.get("section")} — {bns.get("title","")}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {bns.get("content","")}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {_short(bns.get("content",""))}</div>'
                             f'<div class="counterpart-row"><span class="field-label">Punishment</span> {bns.get("punishment","Not specified")}</div>'
                             f'<div class="counterpart-row"><span class="field-label">In force</span> {bns.get("valid_from","2024-07-01")} onwards</div>'
                             f'<div class="counterpart-row"><span class="field-label">Source</span> {bns.get("source","Bharatiya Nyaya Sanhita, 2023")}</div>'
@@ -1762,7 +1772,7 @@ if analyze and query:
                     {note_html}
                     <div class="statute-field">
                     <span class="field-label">Definition</span>
-                    <span class="field-value">{s.get('content', s.get('text',''))}</span>
+                    <span class="field-value">{_short(s.get('content', s.get('text','')))}</span>
                     </div>
                     <div class="statute-field punishment-field">
                     <span class="field-label">Punishment</span>
@@ -1779,6 +1789,15 @@ if analyze and query:
                     {counterpart_html}
                     </div>
                     """, unsafe_allow_html=True)
+
+                    # Expander with the full statutory text (only if it was trimmed)
+                    _full = re.sub(r"\s+", " ", str(s.get('content', s.get('text','')) or "")).strip()
+                    if len(_full) > 180:
+                        with st.expander("Show full statutory text"):
+                            st.markdown(
+                                f"<div style='font-size:0.9rem; line-height:1.65; color:#cbd5e0;'>{_full}</div>",
+                                unsafe_allow_html=True,
+                            )
             else:
                 st.markdown('''
                 <div class="empty-state">
