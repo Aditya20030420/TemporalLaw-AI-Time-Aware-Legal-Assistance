@@ -101,7 +101,7 @@ Each entry: `law, section, title, category, content, punishment, valid_from, val
 
 Semantic similarity is now the primary ranking signal; the hand-tuned tables
 (`_SECTION_SYNONYMS`, `_IPC_SYNONYMS`, `RULE_MAP`, `KEYWORD_SECTION_MAP`) act only as a thin,
-date-aware post-filter for known IPC↔BNS mappings. See `KNOWN_ISSUES.md` for the full history.
+date-aware post-filter for known IPC↔BNS mappings.
 
 > **First run** downloads the MiniLM model (~80 MB) and caches it; subsequent runs are offline.
 > If the model can't load, retrieval degrades gracefully to pure TF-IDF.
@@ -110,9 +110,10 @@ date-aware post-filter for known IPC↔BNS mappings. See `KNOWN_ISSUES.md` for t
 
 ## Evaluation
 
-See [EVALUATION_README.md](EVALUATION_README.md). Runners include `evaluation.py`,
-`evaluate_temporallaw.py`, `geneval.py`, and statistical tests `hypothesis_test_all.py` /
-`win_rate.py`, using `test_questions.json`, `evaluation_questions.json`, and `ground_truth.json`.
+See [EVALUATION_README.md](EVALUATION_README.md). The evaluation harness is `evaluation.py`,
+which measures answer accuracy, temporal accuracy, law-selection accuracy, citation validity, and
+hallucination rate. It reads `test_questions.json` by default (schema:
+`question, expected_law, expected_section, expected_punishment, valid_date`).
 
 ```bash
 python evaluation.py
