@@ -1,0 +1,7 @@
+{
+  "Answer Accuracy (%)": 82.5,
+  "Temporal Accuracy (%)": 80.0,
+  "Law Selection Accuracy (%)": 80.0,
+  "Citation Validity (%)": 97.5,
+  "Hallucination Rate (%)": 10.0
+}

@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "project": "TemporalLaw AI",
+    "evaluation_scope": "IPC and BNS only",
+    "total_questions": 45,
+    "purpose": "Evaluation of correctness, temporal accuracy, citation validity, and hallucination reduction"
+  },
+  "categories": {
+    "IPC_to_BNS_Transition": {
+      "description": "Questions where BNS must be preferred over IPC (core temporal evaluation)",
+      "questions": [
+        "What is the punishment for theft in India?",
+        "What is the current law for murder in India?",
+        "What is the punishment for robbery under the current criminal law?",
+        "What is the punishment for dacoity in India today?",
+        "What is the current law for causing death by negligence?",
+        "What is the punishment for attempt to murder under the latest law?",
+        "What is the current punishment for grievous hurt in India?",
+        "What is the law applicable for snatching in India?",
+        "What is the punishment for mob lynching under current criminal law?",
+        "What is the punishment for theft by a servant under the current law?"
+      ]
+    },
+    "IPC_Only": {
+      "description": "Historical IPC-based questions (used to validate IPC knowledge)",
+      "questions": [
+        "What is IPC Section 378?",
+        "What is the punishment for theft under IPC?",
+        "What is IPC Section 302?",
+        "What is the punishment for murder under IPC?",
+        "What is the IPC provision for robbery?",
+        "What is the punishment for dacoity under IPC?",
+        "What is IPC Section 304A?",
+        "What is the punishment for causing death by negligence under IPC?",
+        "What is IPC Section 323?",
+        "What is the punishment for voluntarily causing grievous hurt under IPC?"
+      ]
+    },
+    "BNS_Only": {
+      "description": "Questions strictly related to Bharatiya Nyaya Sanhita (new criminal law)",
+      "questions": [
+        "What is BNS Section 303?",
+        "What is the punishment for theft under BNS?",
+        "What is BNS Section 304 related to?",
+        "What is the punishment for snatching under BNS?",
+        "What is the punishment for theft in a dwelling house under BNS?",
+        "What is the punishment for robbery under BNS?",
+        "What is BNS Section 310?",
+        "What is the punishment for dacoity under BNS?",
+        "What is the punishment for murder under BNS?",
+        "What is BNS Section 109?"
+      ]
+    },
+    "Concept_to_Section_Mapping": {
+      "description": "Checks section mapping accuracy and hallucination prevention",
+      "questions": [
+        "Which section of BNS deals with culpable homicide?",
+        "Which IPC section defines culpable homicide?",
+        "Which section of BNS deals with attempt to murder?",
+        "Which IPC section deals with grievous hurt?",
+        "Which BNS section deals with mob lynching?"
+      ]
+    },
+    "Ambiguous_or_Stress_Questions": {
+      "description": "Used to test robustness, temporal awareness, and reasoning",
+      "questions": [
+        "What law applies for theft committed after preparation for causing hurt?",
+        "What is the difference between theft under IPC and BNS?",
+        "Is IPC still applicable for murder after 2024?",
+        "Which law replaced IPC for criminal offences in India?",
+        "From which date did BNS come into force?"
+      ]
+    },
+    "Adversarial_Hallucination": {
+      "description": "Questions designed to trigger hallucination \u2014 non-existent sections, ambiguous references, cross-law traps",
+      "questions": [
+        "What is IPC Section 999?",
+        "What is BNS Section 500?",
+        "What is the punishment under Section 1000 of IPC?",
+        "What does BNS Section 999 say about theft?",
+        "What is the punishment under Section 450 of BNS?"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Logs & temp
+*.log
+*.bak
+*.bak_*
+adapted_eval.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets (never commit API keys)
+.env
+*.env
+
+# Optional: the vector DB can be regenerated with `python populate_database.py`.
+# Uncomment the next line to keep it out of the repo (saves ~36 MB):
+# legal_db/

@@ -1,0 +1,282 @@
+[
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the punishment for theft in India?",
+    "correct_law": "BNS", "correct_section": "303",
+    "correct_punishment": "Imprisonment up to 3 years, or fine, or both.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the current law for murder in India?",
+    "correct_law": "BNS", "correct_section": "101",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the punishment for robbery under the current criminal law?",
+    "correct_law": "BNS", "correct_section": "309",
+    "correct_punishment": "Rigorous imprisonment up to 10 years and fine.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the punishment for dacoity in India today?",
+    "correct_law": "BNS", "correct_section": "310",
+    "correct_punishment": "Life imprisonment or rigorous imprisonment up to 10 years and fine.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the current law for causing death by negligence?",
+    "correct_law": "BNS", "correct_section": "103",
+    "correct_punishment": "Imprisonment up to 5 years or fine or both.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the punishment for attempt to murder under the latest law?",
+    "correct_law": "BNS", "correct_section": "109",
+    "correct_punishment": "Imprisonment up to 10 years, or life if hurt is caused.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the current punishment for grievous hurt in India?",
+    "correct_law": "BNS", "correct_section": "116",
+    "correct_punishment": "Imprisonment up to 7 years and fine.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the law applicable for snatching in India?",
+    "correct_law": "BNS", "correct_section": "304",
+    "correct_punishment": "Imprisonment up to 3 years and fine.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the punishment for mob lynching under current criminal law?",
+    "correct_law": "BNS", "correct_section": "103(2)",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_to_BNS_Transition",
+    "question": "What is the punishment for theft by a servant under the current law?",
+    "correct_law": "BNS", "correct_section": "306",
+    "correct_punishment": "Imprisonment up to 7 years and fine.",
+    "query_type": "transition"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is IPC Section 378?",
+    "correct_law": "IPC", "correct_section": "378",
+    "correct_punishment": "Defined under Section 379",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is the punishment for theft under IPC?",
+    "correct_law": "IPC", "correct_section": "379",
+    "correct_punishment": "Imprisonment up to 3 years, or fine, or both.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is IPC Section 302?",
+    "correct_law": "IPC", "correct_section": "302",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is the punishment for murder under IPC?",
+    "correct_law": "IPC", "correct_section": "302",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is the IPC provision for robbery?",
+    "correct_law": "IPC", "correct_section": "392",
+    "correct_punishment": "Rigorous imprisonment up to 10 years and fine.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is the punishment for dacoity under IPC?",
+    "correct_law": "IPC", "correct_section": "395",
+    "correct_punishment": "Life imprisonment or rigorous imprisonment up to 10 years and fine.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is IPC Section 304A?",
+    "correct_law": "IPC", "correct_section": "304A",
+    "correct_punishment": "Imprisonment up to 2 years, or fine, or both.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is the punishment for causing death by negligence under IPC?",
+    "correct_law": "IPC", "correct_section": "304A",
+    "correct_punishment": "Imprisonment up to 2 years, or fine, or both.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is IPC Section 323?",
+    "correct_law": "IPC", "correct_section": "323",
+    "correct_punishment": "Imprisonment up to 1 year, or fine up to Rs.1,000, or both.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "IPC_Only",
+    "question": "What is the punishment for voluntarily causing grievous hurt under IPC?",
+    "correct_law": "IPC", "correct_section": "325",
+    "correct_punishment": "Imprisonment up to 7 years and fine.",
+    "query_type": "ipc_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is BNS Section 303?",
+    "correct_law": "BNS", "correct_section": "303",
+    "correct_punishment": "Imprisonment up to 3 years, or fine, or both.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is the punishment for theft under BNS?",
+    "correct_law": "BNS", "correct_section": "303",
+    "correct_punishment": "Imprisonment up to 3 years, or fine, or both.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is BNS Section 304 related to?",
+    "correct_law": "BNS", "correct_section": "304",
+    "correct_punishment": "Imprisonment up to 3 years and fine.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is the punishment for snatching under BNS?",
+    "correct_law": "BNS", "correct_section": "304",
+    "correct_punishment": "Imprisonment up to 3 years and fine.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is the punishment for theft in a dwelling house under BNS?",
+    "correct_law": "BNS", "correct_section": "305",
+    "correct_punishment": "Imprisonment up to 7 years and fine.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is the punishment for robbery under BNS?",
+    "correct_law": "BNS", "correct_section": "309",
+    "correct_punishment": "Rigorous imprisonment up to 10 years and fine.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is BNS Section 310?",
+    "correct_law": "BNS", "correct_section": "310",
+    "correct_punishment": "Life imprisonment or rigorous imprisonment up to 10 years and fine.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is the punishment for dacoity under BNS?",
+    "correct_law": "BNS", "correct_section": "310",
+    "correct_punishment": "Life imprisonment or rigorous imprisonment up to 10 years and fine.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is the punishment for murder under BNS?",
+    "correct_law": "BNS", "correct_section": "101",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "BNS_Only",
+    "question": "What is BNS Section 109?",
+    "correct_law": "BNS", "correct_section": "109",
+    "correct_punishment": "Imprisonment up to 10 years, or life if hurt is caused.",
+    "query_type": "bns_only"
+  },
+  {
+    "category": "Concept_to_Section_Mapping",
+    "question": "Which section of BNS deals with culpable homicide?",
+    "correct_law": "BNS", "correct_section": "100",
+    "correct_punishment": "Punishment as prescribed under subsequent sections.",
+    "query_type": "mapping"
+  },
+  {
+    "category": "Concept_to_Section_Mapping",
+    "question": "Which IPC section defines culpable homicide?",
+    "correct_law": "IPC", "correct_section": "299",
+    "correct_punishment": "Defined under Sections 302 and 304",
+    "query_type": "mapping"
+  },
+  {
+    "category": "Concept_to_Section_Mapping",
+    "question": "Which section of BNS deals with attempt to murder?",
+    "correct_law": "BNS", "correct_section": "109",
+    "correct_punishment": "Imprisonment up to 10 years, or life if hurt is caused.",
+    "query_type": "mapping"
+  },
+  {
+    "category": "Concept_to_Section_Mapping",
+    "question": "Which IPC section deals with grievous hurt?",
+    "correct_law": "IPC", "correct_section": "325",
+    "correct_punishment": "Imprisonment up to 7 years and fine.",
+    "query_type": "mapping"
+  },
+  {
+    "category": "Concept_to_Section_Mapping",
+    "question": "Which BNS section deals with mob lynching?",
+    "correct_law": "BNS", "correct_section": "103(2)",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "mapping"
+  },
+  {
+    "category": "Ambiguous_or_Stress_Questions",
+    "question": "What law applies for theft committed after preparation for causing hurt?",
+    "correct_law": "BNS", "correct_section": "307",
+    "correct_punishment": "Rigorous imprisonment up to 10 years and fine.",
+    "query_type": "stress"
+  },
+  {
+    "category": "Ambiguous_or_Stress_Questions",
+    "question": "What is the difference between theft under IPC and BNS?",
+    "correct_law": "BNS", "correct_section": "303",
+    "correct_punishment": "Imprisonment up to 3 years, or fine, or both.",
+    "query_type": "stress"
+  },
+  {
+    "category": "Ambiguous_or_Stress_Questions",
+    "question": "Is IPC still applicable for murder after 2024?",
+    "correct_law": "BNS", "correct_section": "101",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "stress"
+  },
+  {
+    "category": "Ambiguous_or_Stress_Questions",
+    "question": "Which law replaced IPC for criminal offences in India?",
+    "correct_law": "BNS", "correct_section": "101",
+    "correct_punishment": "Death or imprisonment for life and fine.",
+    "query_type": "stress"
+  },
+  {
+    "category": "Ambiguous_or_Stress_Questions",
+    "question": "From which date did BNS come into force?",
+    "correct_law": "BNS", "correct_section": "303",
+    "correct_punishment": "Imprisonment up to 3 years, or fine, or both.",
+    "query_type": "stress"
+  }
+]

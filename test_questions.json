@@ -1,0 +1,72 @@
+[
+  {
+    "question": "What is the punishment for murder under Indian law?",
+    "expected_law": "BNS",
+    "expected_section": "103",
+    "expected_punishment": "death or life imprisonment",
+    "valid_date": "2024-07-01"
+  },
+  {
+    "question": "What is the punishment for theft?",
+    "expected_law": "BNS",
+    "expected_section": "303",
+    "expected_punishment": "imprisonment up to 3 years or fine",
+    "valid_date": "2024-07-01"
+  },
+  {
+    "question": "What was the punishment for murder in 2023?",
+    "expected_law": "IPC",
+    "expected_section": "302",
+    "expected_punishment": "death or life imprisonment",
+    "valid_date": "2023-01-01"
+  },
+  {
+    "question": "What is the penalty for sexual assault under current law?",
+    "expected_law": "BNS",
+    "expected_section": "63",
+    "expected_punishment": "rigorous imprisonment not less than 10 years",
+    "valid_date": "2024-07-01"
+  },
+  {
+    "question": "What are the provisions for dacoity?",
+    "expected_law": "BNS",
+    "expected_section": "310",
+    "expected_punishment": "rigorous imprisonment for life or up to 10 years with fine",
+    "valid_date": "2024-07-01"
+  },
+  {
+    "question": "What was the punishment for sedition under old law?",
+    "expected_law": "IPC",
+    "expected_section": "124A",
+    "expected_punishment": "life imprisonment or imprisonment up to 3 years with fine",
+    "valid_date": "2023-06-01"
+  },
+  {
+    "question": "What is punishment for causing death by negligence?",
+    "expected_law": "BNS",
+    "expected_section": "106",
+    "expected_punishment": "imprisonment up to 2 years or fine",
+    "valid_date": "2024-07-01"
+  },
+  {
+    "question": "What are the provisions for criminal breach of trust?",
+    "expected_law": "BNS",
+    "expected_section": "316",
+    "expected_punishment": "imprisonment up to 3 years or fine or both",
+    "valid_date": "2024-07-01"
+  },
+  {
+    "question": "What was the punishment for kidnapping before BNS?",
+    "expected_law": "IPC",
+    "expected_section": "363",
+    "expected_punishment": "imprisonment up to 7 years with fine",
+    "valid_date": "2023-01-01"
+  },
+  {
+    "question": "What is the punishment for rioting under current law?",
+    "expected_law": "BNS",
+    "expected_section": "189",
+    "expected_punishment": "imprisonment up to 2 years or fine or both",
+    "valid_date": "2024-07-01"
+  }
+]

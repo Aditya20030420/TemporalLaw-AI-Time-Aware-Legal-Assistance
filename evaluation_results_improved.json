@@ -1,0 +1,9 @@
+{
+  "Total Questions": 40,
+  "Answer Accuracy": 42.5,
+  "Law Selection Accuracy": 42.5,
+  "Temporal Accuracy": 100.0,
+  "Citation Validity": 52.5,
+  "Hallucination Rate": 0.0,
+  "failures_count": 19
+}

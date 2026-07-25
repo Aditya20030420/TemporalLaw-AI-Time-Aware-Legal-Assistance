@@ -1,0 +1,2402 @@
+[
+  {
+    "timestamp": "2026-03-10T15:35:46.620693",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-10",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.8,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.2787,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.2,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-10T15:44:24.955450",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-10",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.8,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.2459,
+      "Answer Length": 0.5,
+      "Source Grounding": 0.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-10T15:45:45.248273",
+    "query": "what is the rulling for free speech and sedation",
+    "selected_date": "2026-03-10",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0,
+      "Answer Length": 0.0,
+      "Source Grounding": 0.0,
+      "Completeness": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-03-10T15:46:18.097719",
+    "query": "latest court ruling on free speech and sedition",
+    "selected_date": "2026-03-10",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.1757,
+      "Answer Length": 0.79,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-10T16:27:40.676883",
+    "query": "Define theft under Indian criminal law",
+    "selected_date": "2026-03-10",
+    "statutes_retrieved": 3,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.6,
+      "Top-K Coverage": 0.6,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0,
+      "Answer Length": 0.34,
+      "Source Grounding": 0.0,
+      "Completeness": 0.4
+    }
+  },
+  {
+    "timestamp": "2026-03-11T13:16:03.892205",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.4,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.2258,
+      "Answer Length": 0.4,
+      "Source Grounding": 0.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T13:26:28.424521",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.4,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.1935,
+      "Answer Length": 0.56,
+      "Source Grounding": 0.2,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T13:34:55.193451",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.4,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.2581,
+      "Answer Length": 0.53,
+      "Source Grounding": 0.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T13:40:30.848356",
+    "query": "What is the punishment under BNS section 103(2)?",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0,
+      "Answer Length": 0.0,
+      "Source Grounding": 0.0,
+      "Completeness": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T13:57:34.531494",
+    "query": "What is the punishment under BNS section 103(2)?",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.14,
+      "Source Grounding": 0.4,
+      "Completeness": 0.6
+    }
+  },
+  {
+    "timestamp": "2026-03-11T13:58:14.532496",
+    "query": "What is the punishment under BNS section 103",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.16,
+      "Source Grounding": 0.4,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-11T14:03:44.656572",
+    "query": "what is the punishment under section 103",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.74,
+      "Source Grounding": 0.8,
+      "Completeness": 0.5
+    }
+  },
+  {
+    "timestamp": "2026-03-11T14:29:39.854792",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.6,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T14:42:19.498222",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.6,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T14:48:02.013649",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.6,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T17:04:01.544579",
+    "query": "latest court ruling on free speech and sedition",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.3492,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-11T17:45:26.612026",
+    "query": "Define theft under Indian criminal law",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.2,
+      "Completeness": 0.2
+    }
+  },
+  {
+    "timestamp": "2026-03-11T17:46:04.532869",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-11",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.2,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-12T12:23:05.462113",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.2,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.5
+    }
+  },
+  {
+    "timestamp": "2026-03-12T12:29:17.829809",
+    "query": "latest court ruling on free speech and sedition",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.1757,
+      "Answer Length": 0.53,
+      "Source Grounding": 1.0,
+      "Completeness": 0.3333
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:41:08.692937",
+    "query": "What is the punishment for sedition?",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0,
+      "Answer Length": 0.0,
+      "Source Grounding": 0.0,
+      "Completeness": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:44:51.855508",
+    "query": "What is the punishment under section 124A",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0,
+      "Answer Length": 0.0,
+      "Source Grounding": 0.0,
+      "Completeness": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:48:10.271072",
+    "query": "What is the punishment  for sedition",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0,
+      "Answer Length": 0.0,
+      "Source Grounding": 0.0,
+      "Completeness": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:48:19.435744",
+    "query": "What is the punishment  for sedition?",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 0,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 0.0,
+      "Topical Relevance": 0.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 0.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0,
+      "Answer Length": 0.0,
+      "Source Grounding": 0.0,
+      "Completeness": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:00:49.260660",
+    "query": "What is the recent punishment  for sedition?",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 4,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.25,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.25,
+      "Answer Length": 0.64,
+      "Source Grounding": 0.8,
+      "Completeness": 0.25
+    }
+  },
+  {
+    "timestamp": "2026-03-12T23:31:00.778071",
+    "query": "Latest case on robbery and murder",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.4,
+      "Temporal Freshness": 0.8,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.4,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-12T23:31:51.732660",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-12",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.4423,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.6,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T00:59:16.115409",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0645,
+      "Answer Length": 0.26,
+      "Source Grounding": 0.6,
+      "Completeness": 0.4
+    }
+  },
+  {
+    "timestamp": "2026-03-13T01:23:21.711809",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.3065,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6
+    }
+  },
+  {
+    "timestamp": "2026-03-13T01:24:25.453340",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.3462,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.4,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T01:28:30.762257",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.3269,
+      "Answer Length": 0.76,
+      "Source Grounding": 0.6,
+      "Completeness": 0.3333
+    }
+  },
+  {
+    "timestamp": "2026-03-13T01:35:05.001599",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.2097,
+      "Answer Length": 0.5,
+      "Source Grounding": 0.6,
+      "Completeness": 0.8
+    }
+  },
+  {
+    "timestamp": "2026-03-13T01:40:04.747674",
+    "query": "what is the punishment under section 152",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.2,
+      "Temporal Freshness": 0.6,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.6,
+      "Completeness": 0.5
+    }
+  },
+  {
+    "timestamp": "2026-03-13T11:47:28.152198",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.1846,
+      "Answer Length": 0.52,
+      "Source Grounding": 0.8,
+      "Completeness": 0.6
+    }
+  },
+  {
+    "timestamp": "2026-03-13T11:48:07.607022",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.1846,
+      "Answer Length": 0.71,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6
+    }
+  },
+  {
+    "timestamp": "2026-03-13T11:53:38.169593",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.2143,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.8,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T11:54:29.843474",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.1538,
+      "Answer Length": 0.2,
+      "Source Grounding": 0.4,
+      "Completeness": 0.4
+    }
+  },
+  {
+    "timestamp": "2026-03-13T11:54:49.856409",
+    "query": "what is the punishment under section 124(A)",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.1571,
+      "Answer Length": 0.54,
+      "Source Grounding": 0.6,
+      "Completeness": 0.4
+    }
+  },
+  {
+    "timestamp": "2026-03-13T11:55:09.854183",
+    "query": "what is the punishment under section 124A?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 0,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "Top-K Coverage": 0.0,
+      "Temporal Accuracy": 0.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.2,
+      "Answer Length": 0.23,
+      "Source Grounding": 0.4,
+      "Completeness": 0.2
+    }
+  },
+  {
+    "timestamp": "2026-03-13T11:58:16.339407",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.8,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:01:32.072132",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.8,
+      "Completeness": 0.6
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:01:49.799810",
+    "query": "what is the punishment under section 152",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.4,
+      "Temporal Freshness": 0.8,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.8,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:05:40.629830",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.8,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:06:56.079551",
+    "query": "What is the recent punishment  for sedition?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.25
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:10:51.212174",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 0.8,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:15:47.716778",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:17:07.362961",
+    "query": "what is the punishment under section 152",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.4,
+      "Temporal Freshness": 0.8,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:17:43.241135",
+    "query": "what is the punishment under section 124",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 3,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.6,
+      "Top-K Coverage": 0.6,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.2,
+      "Temporal Freshness": 0.2,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T12:18:24.790794",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:00:42.364056",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.4,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:01:58.130652",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.2,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:10:54.818459",
+    "query": "Which section of BNS deals with culpable homicide?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.934,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:35:57.542833",
+    "query": "Which section of BNS deals with culpable homicide?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 0.25,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.939,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:38:28.380796",
+    "query": "Latest case on robbery and murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:40:14.352559",
+    "query": "Latest case on robbery and murder",
+    "selected_date": "2020-03-01",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.4,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.964,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:43:48.318125",
+    "query": "Latest case on robbery and murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:49:22.764670",
+    "query": "What is the recent punishment  for sedition?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 4,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.25
+    }
+  },
+  {
+    "timestamp": "2026-03-13T13:49:59.103046",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.2,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:00:09.628007",
+    "query": "Latest case on robbery and murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:00:32.234594",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:33:22.463880",
+    "query": "What is the recent punishment  for sedition?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 4,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.25
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:37:41.685105",
+    "query": "recent judgment on punishment for murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.2,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:39:30.679131",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:42:34.084029",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:45:32.210332",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T14:49:20.429029",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T15:05:42.429399",
+    "query": "Recent judgment on punishment for murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T15:25:22.361126",
+    "query": "What is the recent punishment  for sedition?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.25
+    }
+  },
+  {
+    "timestamp": "2026-03-13T15:40:03.030903",
+    "query": "What is the punishment  for sedition?",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.3333
+    }
+  },
+  {
+    "timestamp": "2026-03-13T16:57:23.522781",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 3,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-13T17:53:24.900683",
+    "query": "Recent judgment on punishment for murder",
+    "selected_date": "2026-03-13",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.974,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-03-13T22:41:26.560558",
+    "query": "Recent judgment on punishment for murder",
+    "selected_date": "2020-03-01",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.978,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-03-14T08:20:20.565996",
+    "query": "latest court ruling on free speech and sedition",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 2,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.4,
+      "Top-K Coverage": 0.4,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.5,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-14T08:24:39.426111",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.935,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-14T09:55:26.985353",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.934,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-14T09:55:56.380582",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.3333,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.8
+    }
+  },
+  {
+    "timestamp": "2026-03-14T09:56:15.560655",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.934,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-14T09:59:48.770144",
+    "query": "what is the punishment for sedition?",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 4,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.968,
+      "Source Grounding": 1.0,
+      "Completeness": 0.3333
+    }
+  },
+  {
+    "timestamp": "2026-03-14T10:00:07.800822",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.934,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-14T10:34:50.652996",
+    "query": "what is the punishment for theft",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.903,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-14T10:35:21.442351",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.934,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-03-14T11:12:13.860126",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-03-14",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.934,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-04-02T12:40:51.871160",
+    "query": "what is the punishment under section 124A",
+    "selected_date": "2026-04-02",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.25,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.8
+    }
+  },
+  {
+    "timestamp": "2026-04-02T12:41:22.346121",
+    "query": "what is the punishment under section 152",
+    "selected_date": "2026-04-02",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-04-02T12:42:22.350108",
+    "query": "what is the punishment under section 152",
+    "selected_date": "2023-04-02",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.8,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-04-02T12:43:03.518157",
+    "query": "what is the punishment under section 152",
+    "selected_date": "2016-04-03",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 5,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 0.2,
+      "Top-K Coverage": 0.2,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 1.0,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-04-05T20:10:14.567247",
+    "query": "section 420 of IPC?",
+    "selected_date": "2026-04-05",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.842,
+      "Source Grounding": 1.0,
+      "Completeness": 0.5
+    }
+  },
+  {
+    "timestamp": "2026-04-05T20:21:59.243415",
+    "query": "community service is in which section",
+    "selected_date": "2026-04-05",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.775,
+      "Source Grounding": 1.0,
+      "Completeness": 1.0
+    }
+  },
+  {
+    "timestamp": "2026-05-01T16:05:30.078362",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-05-01",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.3333,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0476,
+      "Answer Length": 0.45,
+      "Source Grounding": 0.6,
+      "Completeness": 0.3333
+    }
+  },
+  {
+    "timestamp": "2026-05-09T09:46:15.062608",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-05-09",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.9,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0521,
+      "Answer Length": 0.45,
+      "Source Grounding": 0.6,
+      "Completeness": 0.3333
+    }
+  },
+  {
+    "timestamp": "2026-06-02T00:18:42.285098",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-06-02",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "Top-K Coverage": 1.0,
+      "Temporal Accuracy": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.6,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0252,
+      "Answer Length": 0.45,
+      "Source Grounding": 0.6,
+      "Completeness": 0.3333
+    }
+  },
+  {
+    "timestamp": "2026-07-25T01:57:31.601111",
+    "query": "what is the punishment for sedition",
+    "selected_date": "2026-07-25",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Retrieval Confidence": 0.7416,
+      "Score Margin": 0.1319,
+      "Temporal Validity": 0.8,
+      "Top-K Coverage": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.9,
+      "Temporal Freshness": 0.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 0.0194,
+      "Answer Length": 0.1,
+      "Source Grounding": 0.2,
+      "Completeness": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-07-25T21:10:38.506734",
+    "query": "latest court ruling on free speech and sedition",
+    "selected_date": "2026-07-25",
+    "statutes_retrieved": 5,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Retrieval Confidence": 0.7606,
+      "Score Margin": 0.0039,
+      "Temporal Validity": 1.0,
+      "Top-K Coverage": 1.0
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.1667,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.5,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-07-25T21:20:22.599300",
+    "query": "latest court ruling on free speech and sedition",
+    "selected_date": "2026-07-25",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Retrieval Confidence": 0.7577,
+      "Score Margin": 0.0,
+      "Temporal Validity": 1.0,
+      "Top-K Coverage": 0.2
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 1.0,
+      "Temporal Freshness": 0.1667,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.865,
+      "Source Grounding": 1.0,
+      "Completeness": 0.6667
+    }
+  },
+  {
+    "timestamp": "2026-07-25T21:21:16.580157",
+    "query": "Recent judgment on punishment for murder",
+    "selected_date": "2026-07-25",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Retrieval Confidence": 1.0,
+      "Score Margin": 0.0,
+      "Temporal Validity": 1.0,
+      "Top-K Coverage": 0.2
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.5,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  },
+  {
+    "timestamp": "2026-07-25T21:28:02.530433",
+    "query": "Recent judgment on punishment for murder",
+    "selected_date": "2026-07-25",
+    "statutes_retrieved": 1,
+    "web_results_retrieved": 10,
+    "offline_retrieval_metrics": {
+      "Retrieval Confidence": 1.0,
+      "Score Margin": 0.0,
+      "Temporal Validity": 1.0,
+      "Top-K Coverage": 0.2
+    },
+    "online_retrieval_metrics": {
+      "Trusted Source Precision": 1.0,
+      "Topical Relevance": 0.6,
+      "Temporal Freshness": 1.0,
+      "Web Coverage": 1.0
+    },
+    "generation_metrics": {
+      "Context Usage": 1.0,
+      "Answer Length": 0.5,
+      "Source Grounding": 1.0,
+      "Completeness": 0.75
+    }
+  }
+]
