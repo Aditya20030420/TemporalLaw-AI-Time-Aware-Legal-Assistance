@@ -2,8 +2,17 @@ import streamlit as st
 import requests
 import os
 from datetime import datetime
-import chromadb
-import ollama
+# chromadb and ollama are optional: they power the local nomic/ChromaDB semantic
+# path, but the app runs fine without them (falls back to MiniLM, then TF-IDF).
+# On hosted environments (e.g. Streamlit Cloud) these are typically absent.
+try:
+    import chromadb
+except Exception:
+    chromadb = None
+try:
+    import ollama
+except Exception:
+    ollama = None
 import re
 import json
 import math
@@ -322,11 +331,13 @@ def _semantic_scores_chroma(query):
     aren't in the current JSON). Returns {} on any failure so the caller can fall
     back to MiniLM / TF-IDF.
     """
+    if collection is None:
+        return {}
     try:
         r = requests.post(
             OLLAMA_EMBED_URL,
             json={"model": OLLAMA_EMBED_MODEL, "prompt": query},
-            timeout=30,
+            timeout=5,
         )
         r.raise_for_status()
         qemb = r.json()["embedding"]
@@ -414,8 +425,15 @@ def _hybrid_score_all(query):
 # =====================================================
 @st.cache_resource
 def get_chroma_collection():
-    c = chromadb.PersistentClient(path=DB_PATH)
-    return c.get_or_create_collection(name="criminal_law")
+    # Non-fatal: if chromadb is unavailable or fails to open the store, return
+    # None and let retrieval fall back to the MiniLM semantic index.
+    if chromadb is None:
+        return None
+    try:
+        c = chromadb.PersistentClient(path=DB_PATH)
+        return c.get_or_create_collection(name="criminal_law")
+    except Exception:
+        return None
 
 collection = get_chroma_collection()
 
