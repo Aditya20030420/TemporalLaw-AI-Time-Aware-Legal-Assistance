@@ -1741,22 +1741,29 @@ if analyze and query:
                 unsafe_allow_html=True
             )
 
-        st.markdown('<p class="section-header">Legal Analysis</p>', unsafe_allow_html=True)
-        st.markdown(f'<div class="answer-box">{answer}</div>', unsafe_allow_html=True)
-
-        # Read more: full definitions + punishment behind the concise analysis
+        # Build an inline "Read more" (HTML <details>) with the full text,
+        # shown *inside* the answer box, only if something was actually trimmed.
+        readmore_html = ""
         if statutes and any(len(re.sub(r"\s+", " ", str(s.get("content", s.get("text", "")) or "")).strip()) > 180 for s in statutes):
-            with st.expander("Read more — full statutory text"):
-                for s in statutes:
-                    full = re.sub(r"\s+", " ", str(s.get("content", s.get("text", "")) or "")).strip()
-                    st.markdown(
-                        f"<div style='margin-bottom:1rem;'>"
-                        f"<div style='font-weight:600; color:#e2e8f0;'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
-                        f"<div style='font-size:0.9rem; line-height:1.65; color:#cbd5e0; margin:0.3rem 0;'>{full}</div>"
-                        f"<div style='font-size:0.9rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
-                        f"</div>",
-                        unsafe_allow_html=True,
-                    )
+            blocks = ""
+            for s in statutes:
+                full = re.sub(r"\s+", " ", str(s.get("content", s.get("text", "")) or "")).strip()
+                blocks += (
+                    f"<div style='margin-bottom:0.9rem;'>"
+                    f"<div style='font-weight:600; color:#e2e8f0;'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
+                    f"<div style='font-size:0.9rem; line-height:1.65; color:#cbd5e0; margin:0.3rem 0;'>{full}</div>"
+                    f"<div style='font-size:0.9rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
+                    f"</div>"
+                )
+            readmore_html = (
+                "<details style='margin-top:0.8rem;'>"
+                "<summary style='cursor:pointer; color:#a0c4ff; font-weight:600; font-size:0.9rem;'>Read more</summary>"
+                f"<div style='margin-top:0.6rem;'>{blocks}</div>"
+                "</details>"
+            )
+
+        st.markdown('<p class="section-header">Legal Analysis</p>', unsafe_allow_html=True)
+        st.markdown(f'<div class="answer-box">{answer}{readmore_html}</div>', unsafe_allow_html=True)
 
         col_left, col_right = st.columns(2)
 
