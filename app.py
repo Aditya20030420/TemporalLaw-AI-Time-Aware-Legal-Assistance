@@ -1741,29 +1741,36 @@ if analyze and query:
                 unsafe_allow_html=True
             )
 
-        # Build an inline "Read more" (HTML <details>) with the full text,
-        # shown *inside* the answer box, only if something was actually trimmed.
-        readmore_html = ""
-        if statutes and any(len(re.sub(r"\s+", " ", str(s.get("content", s.get("text", "")) or "")).strip()) > 180 for s in statutes):
-            blocks = ""
-            for s in statutes:
-                full = re.sub(r"\s+", " ", str(s.get("content", s.get("text", "")) or "")).strip()
-                blocks += (
-                    f"<div style='margin-bottom:0.9rem;'>"
-                    f"<div style='font-weight:600; color:#e2e8f0;'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
-                    f"<div style='font-size:0.9rem; line-height:1.65; color:#cbd5e0; margin:0.3rem 0;'>{full}</div>"
-                    f"<div style='font-size:0.9rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
-                    f"</div>"
-                )
-            readmore_html = (
-                "<details style='margin-top:0.8rem;'>"
-                "<summary style='cursor:pointer; color:#a0c4ff; font-weight:600; font-size:0.9rem;'>Read more</summary>"
-                f"<div style='margin-top:0.6rem;'>{blocks}</div>"
-                "</details>"
+        # Legal Analysis box: show only the TOP provision (concise) by default,
+        # with an inline "Read more" that expands to the full answer (all provisions).
+        def _prov_block(s, short=True):
+            content = s.get("content", s.get("text", ""))
+            body = _short(content, 200) if short else re.sub(r"\s+", " ", str(content or "")).strip()
+            return (
+                f"<div style='margin-bottom:0.9rem;'>"
+                f"<div style='font-weight:600; color:#e2e8f0;'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
+                f"<div style='font-size:0.92rem; line-height:1.65; color:#cbd5e0; margin:0.3rem 0;'>{body}</div>"
+                f"<div style='font-size:0.92rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
+                f"</div>"
             )
 
+        if statutes:
+            box_html = _prov_block(statutes[0], short=True)
+            # Anything beyond the top result, or a trimmed top result, goes behind "Read more".
+            top_full = re.sub(r"\s+", " ", str(statutes[0].get("content", statutes[0].get("text", "")) or "")).strip()
+            if len(statutes) > 1 or len(top_full) > 200:
+                full_blocks = "".join(_prov_block(s, short=False) for s in statutes)
+                box_html += (
+                    "<details style='margin-top:0.6rem;'>"
+                    "<summary style='cursor:pointer; color:#a0c4ff; font-weight:600; font-size:0.9rem;'>Read more</summary>"
+                    f"<div style='margin-top:0.6rem;'>{full_blocks}</div>"
+                    "</details>"
+                )
+        else:
+            box_html = answer
+
         st.markdown('<p class="section-header">Legal Analysis</p>', unsafe_allow_html=True)
-        st.markdown(f'<div class="answer-box">{answer}{readmore_html}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="answer-box">{box_html}</div>', unsafe_allow_html=True)
 
         col_left, col_right = st.columns(2)
 
