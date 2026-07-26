@@ -1744,6 +1744,20 @@ if analyze and query:
         st.markdown('<p class="section-header">Legal Analysis</p>', unsafe_allow_html=True)
         st.markdown(f'<div class="answer-box">{answer}</div>', unsafe_allow_html=True)
 
+        # Read more: full definitions + punishment behind the concise analysis
+        if statutes and any(len(re.sub(r"\s+", " ", str(s.get("content", s.get("text", "")) or "")).strip()) > 180 for s in statutes):
+            with st.expander("Read more — full statutory text"):
+                for s in statutes:
+                    full = re.sub(r"\s+", " ", str(s.get("content", s.get("text", "")) or "")).strip()
+                    st.markdown(
+                        f"<div style='margin-bottom:1rem;'>"
+                        f"<div style='font-weight:600; color:#e2e8f0;'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
+                        f"<div style='font-size:0.9rem; line-height:1.65; color:#cbd5e0; margin:0.3rem 0;'>{full}</div>"
+                        f"<div style='font-size:0.9rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
+                        f"</div>",
+                        unsafe_allow_html=True,
+                    )
+
         col_left, col_right = st.columns(2)
 
         with col_left:
