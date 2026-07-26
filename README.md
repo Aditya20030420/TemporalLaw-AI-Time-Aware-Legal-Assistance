@@ -1,5 +1,7 @@
 # Time-Aware Legal Assistant (IPC → BNS)
 
+**🔗 Live demo: [temporallaw-ai.streamlit.app](https://temporallaw-ai.streamlit.app)**
+
 A Streamlit chatbot for Indian criminal-law research that is **time-aware**: it knows the
 Indian Penal Code (IPC, 1860) was replaced by the Bharatiya Nyaya Sanhita
 (BNS, 2023, effective **1 July 2024**) and returns the law that was in force on a
