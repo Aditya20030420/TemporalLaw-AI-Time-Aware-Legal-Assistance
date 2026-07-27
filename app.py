@@ -1251,11 +1251,19 @@ st.set_page_config(
     page_icon=""
 )
 
-# ---- Light / Dark theme toggle ----
-_tcols = st.columns([5, 1])
+# ---- Light / Dark theme toggle (segmented control with icons) ----
+_tcols = st.columns([7, 2])
 with _tcols[1]:
-    theme = st.radio("Theme", ["Dark", "Light"], horizontal=True,
-                     label_visibility="collapsed", key="theme")
+    try:
+        _sel = st.segmented_control(
+            "Theme", ["🌙 Dark", "☀️ Light"], default="🌙 Dark",
+            label_visibility="collapsed", key="theme_seg",
+        )
+        theme = "Light" if (_sel and "Light" in _sel) else "Dark"
+    except Exception:
+        # Fallback for older Streamlit without segmented_control
+        theme = st.radio("Theme", ["Dark", "Light"], horizontal=True,
+                         label_visibility="collapsed", key="theme")
 
 if theme == "Light":
     bg_gradient     = "linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%)"
@@ -1664,6 +1672,18 @@ st.markdown(f"""
     .header-subtitle {{ font-size: 1rem; }}
     .metric-card {{ margin-bottom: 1rem; }}
     .section-header {{ font-size: 1.2rem; }}
+    }}
+    /* ---- Theme segmented control ---- */
+    div[data-testid="stSegmentedControl"] {{ display: flex; justify-content: flex-end; }}
+    button[data-testid^="stBaseButton-segmented_control"] {{
+    border-radius: 20px !important;
+    padding: 0.25rem 0.9rem !important;
+    font-size: 0.85rem !important;
+    }}
+    button[data-testid="stBaseButton-segmented_controlActive"] {{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
     }}
     </style>
 """, unsafe_allow_html=True)
