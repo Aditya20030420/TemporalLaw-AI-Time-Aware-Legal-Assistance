@@ -1487,20 +1487,25 @@ st.markdown(f"""
     color: #0d7a6f;
     text-decoration: underline;
     }}
-    .stButton > button {{
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    .stButton > button,
+    .stFormSubmitButton > button,
+    div[data-testid="stFormSubmitButton"] > button {{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
     font-weight: 600;
     font-size: 1.1rem;
     padding: 0.8rem 2rem;
     border-radius: 8px;
-    border: none;
+    border: none !important;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     transition: all 0.3s;
     }}
-    .stButton > button:hover {{
+    .stButton > button:hover,
+    .stFormSubmitButton > button:hover,
+    div[data-testid="stFormSubmitButton"] > button:hover {{
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    color: white !important;
     }}
     .stTextInput > div > div > input {{
     border-radius: 8px;
@@ -1523,6 +1528,15 @@ st.markdown(f"""
     border: 2px solid {border_color};
     background: {card_bg};
     color: {text_color} !important;
+    }}
+    /* Force the BaseWeb date-input container to follow the theme (its inner
+       input is transparent, so the background lives on the wrapper). */
+    .stDateInput div[data-baseweb="input"],
+    .stDateInput div[data-baseweb="input"] > div,
+    .stDateInput input {{
+    background: {card_bg} !important;
+    color: {text_color} !important;
+    border-color: {border_color} !important;
     }}
     .empty-state {{
     text-align: center;
