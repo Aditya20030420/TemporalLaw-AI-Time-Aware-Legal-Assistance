@@ -1675,15 +1675,30 @@ st.markdown(f"""
     }}
     /* ---- Theme segmented control ---- */
     div[data-testid="stSegmentedControl"] {{ display: flex; justify-content: flex-end; }}
+    div[data-testid="stSegmentedControl"] > div {{
+    background: {card_bg} !important;
+    border: 1px solid {border_color} !important;
+    border-radius: 22px !important;
+    padding: 2px !important;
+    }}
+    /* inactive segments follow the theme */
     button[data-testid^="stBaseButton-segmented_control"] {{
+    background: transparent !important;
+    color: {text_color} !important;
+    border: none !important;
     border-radius: 20px !important;
-    padding: 0.25rem 0.9rem !important;
+    padding: 0.28rem 1rem !important;
     font-size: 0.85rem !important;
     }}
+    button[data-testid^="stBaseButton-segmented_control"]:hover {{
+    background: rgba(102,126,234,0.12) !important;
+    color: {text_color} !important;
+    }}
+    /* active segment: purple gradient */
     button[data-testid="stBaseButton-segmented_controlActive"] {{
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     color: #ffffff !important;
-    border-color: transparent !important;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.35) !important;
     }}
     </style>
 """, unsafe_allow_html=True)
