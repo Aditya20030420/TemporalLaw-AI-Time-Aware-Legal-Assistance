@@ -1764,7 +1764,7 @@ if analyze and query:
             body = _short(content, 200) if short else re.sub(r"\s+", " ", str(content or "")).strip()
             return (
                 f"<div style='margin-bottom:0.9rem;'>"
-                f"<div style='font-weight:600; color:{text_color};'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
+                f"<div style='font-weight:600; color:{text_color};'>{s.get('title','')}{(' — ' + s.get('category','')) if s.get('category') else ''}</div>"
                 f"<div style='font-size:0.92rem; line-height:1.65; color:{field_value}; margin:0.3rem 0;'>{body}</div>"
                 f"<div style='font-size:0.92rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
                 f"</div>"
