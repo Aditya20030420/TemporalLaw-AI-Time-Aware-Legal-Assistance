@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import os
+import html
 from datetime import datetime
 # chromadb and ollama are optional: they power the local nomic/ChromaDB semantic
 # path, but the app runs fine without them (falls back to MiniLM, then TF-IDF).
@@ -767,7 +768,10 @@ def chroma_search(query, selected_date):
 # =====================================================
 # ONLINE SEARCH
 # =====================================================
+@st.cache_data(ttl=3600, show_spinner=False)
 def serpapi_search(query, year):
+    # Cached for 1 hour per (query, year) to conserve the SerpAPI free-tier
+    # quota (100 searches/month) — repeated/identical queries don't re-spend.
     if not SERPAPI_KEY:
         return []
 
@@ -783,8 +787,31 @@ def serpapi_search(query, year):
         "hl": "en"
     }
 
-    r = requests.get("https://serpapi.com/search", params=params, timeout=15)
-    return r.json().get("organic_results", [])
+    try:
+        r = requests.get("https://serpapi.com/search", params=params, timeout=15)
+        return r.json().get("organic_results", [])
+    except Exception:
+        return []
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _amendment_search(topic_str, year):
+    # Cached law-change web lookup (used by detect_law_changes) — also conserves
+    # the SerpAPI quota so each query doesn't double-spend on searches.
+    if not SERPAPI_KEY:
+        return []
+    site_filter = " OR ".join([f"site:{s}" for s in LEGAL_SITES])
+    params = {
+        "engine": "google",
+        "q": f"India criminal law amendment {topic_str} {year} {site_filter}",
+        "api_key": SERPAPI_KEY,
+        "num": 3, "gl": "in", "hl": "en",
+    }
+    try:
+        r = requests.get("https://serpapi.com/search", params=params, timeout=10)
+        return r.json().get("organic_results", [])
+    except Exception:
+        return []
 
 # =====================================================
 # EVALUATION METRICS (BACKEND ONLY)
@@ -962,30 +989,18 @@ def detect_law_changes(query, statutes, selected_date):
 
     if SERPAPI_KEY:
         topics = set(_tokenise(query))
-        topic_str = " ".join(topics) if topics else query.split()[0]
-        amendment_query = f"India criminal law amendment {topic_str} {selected_date.year}"
-        site_filter = " OR ".join([f"site:{s}" for s in LEGAL_SITES])
-        params = {
-            "engine": "google",
-            "q": f"{amendment_query} {site_filter}",
-            "api_key": SERPAPI_KEY,
-            "num": 3, "gl": "in", "hl": "en"
-        }
-        try:
-            r = requests.get("https://serpapi.com/search", params=params, timeout=10)
-            web_hits = r.json().get("organic_results", [])
-            amendment_keywords = ["amend","repeal","replac","new law","bns","reform","revised","notif"]
-            for w in web_hits:
-                text = (w.get("title","") + " " + w.get("snippet","")).lower()
-                if any(kw in text for kw in amendment_keywords):
-                    changes["has_changes"] = True
-                    changes["web_changes"].append({
-                        "title": w.get("title",""),
-                        "snippet": w.get("snippet",""),
-                        "link": w.get("link","#")
-                    })
-        except Exception:
-            pass
+        topic_str = " ".join(topics) if topics else (query.split()[0] if query.split() else "")
+        web_hits = _amendment_search(topic_str, selected_date.year)
+        amendment_keywords = ["amend","repeal","replac","new law","bns","reform","revised","notif"]
+        for w in web_hits:
+            text = (w.get("title","") + " " + w.get("snippet","")).lower()
+            if any(kw in text for kw in amendment_keywords):
+                changes["has_changes"] = True
+                changes["web_changes"].append({
+                    "title": w.get("title",""),
+                    "snippet": w.get("snippet",""),
+                    "link": w.get("link","#")
+                })
 
     if changes["has_changes"]:
         parts = []
@@ -1736,7 +1751,8 @@ if analyze and query:
             web_links_html = ""
             if law_changes["web_changes"]:
                 web_links_html = "<br>" + "".join(
-                    '<a href="' + w["link"] + '" target="_blank" class="law-change-web-link">' + w["title"] + '</a><br>'
+                    '<a href="' + html.escape(str(w.get("link", "#")), quote=True) + '" target="_blank" rel="noopener noreferrer" class="law-change-web-link">'
+                    + html.escape(str(w.get("title", ""))) + '</a><br>'
                     for w in law_changes["web_changes"]
                 )
             banner_html = (
@@ -1791,7 +1807,7 @@ if analyze and query:
         col_left, col_right = st.columns(2)
 
         with col_left:
-            st.markdown(f'<p class="section-header">Statutory Provisions <span class="result-badge">{len(statutes)} results</span></p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="section-header">Statutory Provisions <span class="result-badge">{len(statutes)} result{"" if len(statutes)==1 else "s"}</span></p>', unsafe_allow_html=True)
             if statutes:
                 for s in statutes:
                     ipc = s.get("ipc_counterpart")
@@ -1869,7 +1885,7 @@ if analyze and query:
                 ''', unsafe_allow_html=True)
 
         with col_right:
-            st.markdown(f'<p class="section-header">Judicial & Web Sources <span class="result-badge">{len(web_results)} results</span></p>', unsafe_allow_html=True)
+            st.markdown(f'<p class="section-header">Judicial & Web Sources <span class="result-badge">{len(web_results)} result{"" if len(web_results)==1 else "s"}</span></p>', unsafe_allow_html=True)
             if web_results:
                 def _parse_date(w):
                     """Parse SerpAPI date string to sortable value, newest first."""
@@ -1902,13 +1918,17 @@ if analyze and query:
 
                 sorted_web = sorted(web_results, key=_parse_date, reverse=True)
                 for w in sorted_web:
-                    date_info = _extract_date_from_text(w)
+                    # Escape untrusted external (SerpAPI) fields before rendering as HTML.
+                    w_title = html.escape(str(w.get('title', 'Untitled')))
+                    w_snippet = html.escape(str(w.get('snippet', 'No description available')))
+                    w_link = html.escape(str(w.get('link', '#')), quote=True)
+                    date_info = html.escape(str(_extract_date_from_text(w)))
                     st.markdown(f"""
                     <div class="web-card">
-                    <div class="card-title">{w.get('title', 'Untitled')}</div>
-                    <div style="color: #a0aec0; font-size: 0.85rem; margin-bottom: 0.5rem;">{date_info}</div>
-                    <div class="card-text">{w.get('snippet', 'No description available')}</div>
-                    <a href="{w.get('link', '#')}" target="_blank" class="web-link">Read full article</a>
+                    <div class="card-title">{w_title}</div>
+                    <div style="color: {text_secondary}; font-size: 0.85rem; margin-bottom: 0.5rem;">{date_info}</div>
+                    <div class="card-text">{w_snippet}</div>
+                    <a href="{w_link}" target="_blank" rel="noopener noreferrer" class="web-link">Read full article</a>
                     </div>
                     """, unsafe_allow_html=True)
             else:
