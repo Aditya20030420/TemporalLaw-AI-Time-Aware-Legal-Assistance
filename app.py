@@ -994,7 +994,10 @@ def detect_law_changes(query, statutes, selected_date):
         amendment_keywords = ["amend","repeal","replac","new law","bns","reform","revised","notif"]
         for w in web_hits:
             text = (w.get("title","") + " " + w.get("snippet","")).lower()
-            if any(kw in text for kw in amendment_keywords):
+            # Require BOTH an amendment signal AND on-topic relevance (at least one
+            # query topic term present), so tangential results aren't surfaced.
+            on_topic = (not topics) or any(t in text for t in topics)
+            if on_topic and any(kw in text for kw in amendment_keywords):
                 changes["has_changes"] = True
                 changes["web_changes"].append({
                     "title": w.get("title",""),
@@ -1191,7 +1194,12 @@ def generate_answer(query, statutes, web_results, selected_date):
         "Always state: section, definition, punishment, source. "
         "Compare old (IPC) and new (BNS) law if both are present."
     )
-    res = ollama.chat(
+    if ollama is None:
+        raise RuntimeError("ollama unavailable")  # -> generate_answer_safe falls back
+    # Use a client with a hard timeout so a slow/stuck model can't hang the app;
+    # on timeout this raises and generate_answer_safe returns the deterministic answer.
+    client = ollama.Client(timeout=20)
+    res = client.chat(
         model=OLLAMA_CHAT_MODEL,
         messages=[
             {"role": "system", "content": system_prompt},
