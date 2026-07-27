@@ -1228,12 +1228,28 @@ st.set_page_config(
     page_icon=""
 )
 
-bg_gradient = "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)"
-header_gradient = "linear-gradient(135deg, #4a5568 0%, #2d3748 100%)"
-card_bg = "#2d3748"
-text_color = "#e2e8f0"
-text_secondary = "#a0aec0"
-border_color = "#4a5568"
+# ---- Light / Dark theme toggle ----
+_tcols = st.columns([5, 1])
+with _tcols[1]:
+    theme = st.radio("Theme", ["Dark", "Light"], horizontal=True,
+                     label_visibility="collapsed", key="theme")
+
+if theme == "Light":
+    bg_gradient     = "linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%)"
+    header_gradient = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    card_bg         = "#ffffff"
+    text_color      = "#1a202c"
+    text_secondary  = "#5a6675"
+    border_color    = "#cbd5e0"
+    field_value     = "#2d3748"
+else:
+    bg_gradient     = "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)"
+    header_gradient = "linear-gradient(135deg, #4a5568 0%, #2d3748 100%)"
+    card_bg         = "#2d3748"
+    text_color      = "#e2e8f0"
+    text_secondary  = "#a0aec0"
+    border_color    = "#4a5568"
+    field_value     = "#cbd5e0"
 
 st.markdown(f"""
     <style>
@@ -1321,7 +1337,7 @@ st.markdown(f"""
     box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
     }}
     .statute-category {{
-    color: #a0aec0;
+    color: {text_secondary};
     font-size: 0.8rem;
     margin-bottom: 0.8rem;
     font-style: italic;
@@ -1344,7 +1360,7 @@ st.markdown(f"""
     white-space: nowrap;
     }}
     .field-value {{
-    color: #cbd5e0;
+    color: {field_value};
     font-size: 0.92rem;
     }}
     .punishment-field {{
@@ -1385,12 +1401,12 @@ st.markdown(f"""
     }}
     .counterpart-title {{
     font-weight: 600;
-    color: #e2e8f0;
+    color: {text_color};
     margin-bottom: 0.5rem;
     }}
     .counterpart-row {{
     margin-bottom: 0.3rem;
-    color: #a0aec0;
+    color: {text_secondary};
     }}
     .web-card {{
     background: {card_bg};
@@ -1748,8 +1764,8 @@ if analyze and query:
             body = _short(content, 200) if short else re.sub(r"\s+", " ", str(content or "")).strip()
             return (
                 f"<div style='margin-bottom:0.9rem;'>"
-                f"<div style='font-weight:600; color:#e2e8f0;'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
-                f"<div style='font-size:0.92rem; line-height:1.65; color:#cbd5e0; margin:0.3rem 0;'>{body}</div>"
+                f"<div style='font-weight:600; color:{text_color};'>{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}</div>"
+                f"<div style='font-size:0.92rem; line-height:1.65; color:{field_value}; margin:0.3rem 0;'>{body}</div>"
                 f"<div style='font-size:0.92rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
                 f"</div>"
             )
@@ -1841,7 +1857,7 @@ if analyze and query:
                     if len(_full) > 180:
                         with st.expander("Show full statutory text"):
                             st.markdown(
-                                f"<div style='font-size:0.9rem; line-height:1.65; color:#cbd5e0;'>{_full}</div>",
+                                f"<div style='font-size:0.9rem; line-height:1.65; color:{field_value};'>{_full}</div>",
                                 unsafe_allow_html=True,
                             )
             else:
