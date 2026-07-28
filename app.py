@@ -1285,6 +1285,18 @@ else:
 
 st.markdown(f"""
     <style>
+    /* Hide Streamlit's default top toolbar, menu, decoration bar and footer */
+    [data-testid="stHeader"],
+    [data-testid="stToolbar"],
+    [data-testid="stDecoration"],
+    [data-testid="stStatusWidget"] {{
+    display: none !important;
+    height: 0 !important;
+    visibility: hidden !important;
+    }}
+    #MainMenu, footer {{ display: none !important; visibility: hidden !important; }}
+    /* reclaim the space the header used to occupy */
+    .block-container {{ padding-top: 1.5rem !important; }}
     .main {{
     background: {bg_gradient};
     padding: 2rem;
