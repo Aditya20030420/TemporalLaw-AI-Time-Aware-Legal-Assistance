@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import os
 import html
-from datetime import datetime
+from datetime import datetime, date
 # chromadb and ollama are optional: they power the local nomic/ChromaDB semantic
 # path, but the app runs fine without them (falls back to MiniLM, then TF-IDF).
 # On hosted environments (e.g. Streamlit Cloud) these are typically absent.
@@ -1713,6 +1713,14 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+# Apply any pending query/date set by the example or date-preset buttons.
+# This must run BEFORE the form widgets are instantiated.
+if "_pending_query" in st.session_state:
+    st.session_state["query_input"] = st.session_state.pop("_pending_query")
+    st.session_state["_run_now"] = True
+if "_pending_date" in st.session_state:
+    st.session_state["date_input"] = st.session_state.pop("_pending_date")
+
 # Search Section
 with st.form(key="search_form", clear_on_submit=False):
     col1, col2 = st.columns([3, 1])
@@ -1728,9 +1736,10 @@ with st.form(key="search_form", clear_on_submit=False):
         st.markdown('<p class="keyboard-hint">Press Enter to search</p>', unsafe_allow_html=True)
 
     with col2:
+        if "date_input" not in st.session_state:
+            st.session_state["date_input"] = datetime.today().date()
         selected_date = st.date_input(
             "Relevant Date",
-            value=datetime.today(),
             label_visibility="collapsed",
             key="date_input"
         )
@@ -1738,20 +1747,34 @@ with st.form(key="search_form", clear_on_submit=False):
 
     analyze = st.form_submit_button("Analyze Legal Position", use_container_width=True)
 
-# Example queries
-with st.expander("Example Queries - Click to expand"):
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.markdown(f"<p style='color: {text_color};'><strong>Criminal Law</strong></p>", unsafe_allow_html=True)
-        st.markdown(f"<p style='color: {text_color};'>- What is the punishment for murder?<br>- Recent judgments on theft<br>- IPC provisions for robbery</p>", unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"<p style='color: {text_color};'><strong>Case Law</strong></p>", unsafe_allow_html=True)
-        st.markdown(f"<p style='color: {text_color};'>- Latest Supreme Court ruling on sedition<br>- Recent amendments to criminal law<br>- Court interpretations of assault</p>", unsafe_allow_html=True)
-    with col3:
-        st.markdown(f"<p style='color: {text_color};'><strong>Legal Research</strong></p>", unsafe_allow_html=True)
-        st.markdown(f"<p style='color: {text_color};'>- Definition of culpable homicide<br>- Difference between theft and robbery<br>- Bail provisions for murder cases</p>", unsafe_allow_html=True)
+# ---- Quick date presets (showcase the time-awareness) ----
+st.markdown(f"<span style='color:{text_secondary}; font-size:0.85rem;'>Jump to a date:</span>", unsafe_allow_html=True)
+_dp = st.columns([1, 1, 1, 5])
+if _dp[0].button("📅 Today", use_container_width=True):
+    st.session_state["_pending_date"] = datetime.today().date(); st.rerun()
+if _dp[1].button("⏪ Before BNS (2020)", use_container_width=True):
+    st.session_state["_pending_date"] = date(2020, 1, 1); st.rerun()
+if _dp[2].button("⏩ After BNS (2024)", use_container_width=True):
+    st.session_state["_pending_date"] = date(2024, 7, 1); st.rerun()
+
+# ---- Clickable example queries (fill + run) ----
+_EXAMPLES = {
+    "Criminal Law": ["What is the punishment for murder?", "Punishment for theft", "Provisions for robbery"],
+    "Case Law": ["Sedition law in India", "What is criminal breach of trust?", "Punishment for cheating"],
+    "Legal Research": ["Definition of culpable homicide", "Difference between theft and robbery", "What is defamation?"],
+}
+with st.expander("💡 Example Queries — click any to run"):
+    _ecols = st.columns(len(_EXAMPLES))
+    for _i, (_cat, _qs) in enumerate(_EXAMPLES.items()):
+        with _ecols[_i]:
+            st.markdown(f"<p style='color:{text_color}; font-weight:600; margin-bottom:0.4rem;'>{_cat}</p>", unsafe_allow_html=True)
+            for _j, _q in enumerate(_qs):
+                if st.button(_q, key=f"ex_{_i}_{_j}", use_container_width=True):
+                    st.session_state["_pending_query"] = _q
+                    st.rerun()
 
 # Results Section
+analyze = analyze or st.session_state.pop("_run_now", False)
 if analyze and query:
     progress_container = st.empty()
     status_container   = st.empty()
