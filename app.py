@@ -1256,7 +1256,9 @@ _tcols = st.columns([7, 2])
 with _tcols[1]:
     try:
         _sel = st.segmented_control(
-            "Theme", ["Dark", "Light"], default="Dark",
+            "Theme",
+            [":material/dark_mode: Dark", ":material/light_mode: Light"],
+            default=":material/dark_mode: Dark",
             label_visibility="collapsed", key="theme_seg",
         )
         theme = "Light" if (_sel and "Light" in _sel) else "Dark"
