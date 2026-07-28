@@ -2447,7 +2447,7 @@ st.markdown(f"""
     <p style="color: {text_color};"><strong>Disclaimer:</strong> This is an AI-powered legal research tool.
     Always consult with a qualified legal professional for legal advice.</p>
     <p style="font-size: 0.9rem; margin-top: 0.5rem; color: {text_color};">
-    Powered by Ollama • ChromaDB • Streamlit
+    Powered by Groq LLM • Hybrid Semantic + BM25 Retrieval • Streamlit
     </p>
     <p style="font-size: 0.85rem; margin-top: 1rem; color: {text_secondary};">
     Tip: Press Enter to quickly search
