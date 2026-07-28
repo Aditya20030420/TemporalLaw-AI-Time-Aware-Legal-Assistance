@@ -1256,7 +1256,10 @@ _tcols = st.columns([8, 2])
 with _tcols[1]:
     if "theme_toggle" not in st.session_state:
         st.session_state["theme_toggle"] = True  # default: Dark on
-    _dark = st.toggle(":material/dark_mode: Dark mode", key="theme_toggle")
+    # Dynamic icon + label: moon/"Dark mode" when on, sun/"Light mode" when off.
+    _is_dark = st.session_state.get("theme_toggle", True)
+    _lbl = ":material/dark_mode: Dark mode" if _is_dark else ":material/light_mode: Light mode"
+    _dark = st.toggle(_lbl, key="theme_toggle")
     theme = "Dark" if _dark else "Light"
 
 if theme == "Light":
@@ -1684,12 +1687,33 @@ st.markdown(f"""
     .metric-card {{ margin-bottom: 1rem; }}
     .section-header {{ font-size: 1.2rem; }}
     }}
-    /* ---- Theme slider toggle: purple track when ON (Streamlit default is red) ---- */
+    /* ---- Advanced day/night slider toggle ---- */
     div[data-testid="stCheckbox"] {{ display: flex; justify-content: flex-end; }}
-    /* the track is the direct <div> child of the checkbox label; recolour when checked */
+    /* the track is the direct <div> child of the checkbox label */
+    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div {{
+    transition: background 0.4s ease, box-shadow 0.4s ease !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.25) !important;
+    }}
+    /* the knob (nested div) — smooth slide + soft glow */
+    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div > div {{
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease !important;
+    box-shadow: 0 0 8px rgba(102,126,234,0.55), 0 1px 3px rgba(0,0,0,0.3) !important;
+    }}
+    /* ON state: purple gradient track (was Streamlit red) */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div {{
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     border-color: transparent !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.25), 0 0 12px rgba(118,75,162,0.45) !important;
+    }}
+    /* OFF state (Light): warm amber track */
+    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:not(:checked)) > div {{
+    background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%) !important;
+    border-color: transparent !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15), 0 0 12px rgba(237,137,54,0.4) !important;
+    }}
+    /* the label icon (moon/sun) scales in on change */
+    div[data-testid="stCheckbox"] [data-testid="stIconMaterial"] {{
+    transition: transform 0.3s ease, color 0.3s ease !important;
     }}
     </style>
 """, unsafe_allow_html=True)
