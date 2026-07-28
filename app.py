@@ -1251,14 +1251,20 @@ st.set_page_config(
     page_icon=""
 )
 
-# ---- Light / Dark theme toggle (sliding switch) ----
-_tcols = st.columns([8, 2])
+# ---- Light / Dark theme control (segmented, reliable across Streamlit versions) ----
+_tcols = st.columns([7, 2])
 with _tcols[1]:
-    if "theme_toggle" not in st.session_state:
-        st.session_state["theme_toggle"] = True  # default: Dark on
-    # No text label — the sun/moon icon lives inside the knob (styled via CSS).
-    _dark = st.toggle("Theme", key="theme_toggle", label_visibility="collapsed")
-    theme = "Dark" if _dark else "Light"
+    try:
+        _sel = st.segmented_control(
+            "Theme",
+            [":material/dark_mode: Dark", ":material/light_mode: Light"],
+            default=":material/dark_mode: Dark",
+            label_visibility="collapsed", key="theme_seg",
+        )
+        theme = "Light" if (_sel and "Light" in _sel) else "Dark"
+    except Exception:
+        theme = st.radio("Theme", ["Dark", "Light"], horizontal=True,
+                         label_visibility="collapsed", key="theme")
 
 if theme == "Light":
     bg_gradient     = "linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%)"
@@ -1685,42 +1691,32 @@ st.markdown(f"""
     .metric-card {{ margin-bottom: 1rem; }}
     .section-header {{ font-size: 1.2rem; }}
     }}
-    /* ---- Day/Night icon toggle: sun-in-knob on light, moon-in-knob on dark ---- */
-    div[data-testid="stCheckbox"] {{ display: flex; justify-content: flex-end; padding-top: 0.3rem; }}
-    /* enlarge the whole toggle for visibility (SVG stays crisp) */
-    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] {{
-    transform: scale(1.45);
-    transform-origin: center right;
+    /* ---- Theme segmented control (Dark | Light), version-agnostic ---- */
+    div[data-testid="stSegmentedControl"] {{ display: flex; justify-content: flex-end; }}
+    div[data-testid="stSegmentedControl"] button,
+    button[data-testid^="stBaseButton-segmented_control"] {{
+    background: transparent !important;
+    color: {text_color} !important;
+    border: 1px solid {border_color} !important;
+    border-radius: 20px !important;
+    padding: 0.28rem 0.9rem !important;
+    font-size: 0.85rem !important;
+    margin: 0 1px !important;
     }}
-    /* DEFAULT (OFF = Light): pale sky-blue track — use a gradient (BaseWeb ignores
-       background-color overrides but respects background-image) */
-    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div {{
-    background: linear-gradient(135deg, #bfe0f5 0%, #9fc9ea 100%) !important;
-    border: 1px solid rgba(0,0,0,0.12) !important;
-    transition: background 0.4s ease !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.22), 0 0 0 2px rgba(255,255,255,0.06) !important;
+    div[data-testid="stSegmentedControl"] button:hover,
+    button[data-testid^="stBaseButton-segmented_control"]:hover {{
+    background: rgba(102,126,234,0.12) !important;
+    color: {text_color} !important;
+    border-color: #667eea !important;
     }}
-    /* DEFAULT knob: white circle carrying the SUN icon (larger, crisper strokes) */
-    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div > div {{
-    background-color: #ffffff !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    background-size: 14px 14px !important;
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1) !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.35) !important;
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23f59e0b'%20stroke-width='1.8'%20stroke-linecap='round'%3E%3Ccircle%20cx='12'%20cy='12'%20r='3.6'/%3E%3Cline%20x1='12'%20y1='2.5'%20x2='12'%20y2='5'/%3E%3Cline%20x1='12'%20y1='19'%20x2='12'%20y2='21.5'/%3E%3Cline%20x1='2.5'%20y1='12'%20x2='5'%20y2='12'/%3E%3Cline%20x1='19'%20y1='12'%20x2='21.5'%20y2='12'/%3E%3Cline%20x1='5.2'%20y1='5.2'%20x2='7'%20y2='7'/%3E%3Cline%20x1='17'%20y1='17'%20x2='18.8'%20y2='18.8'/%3E%3Cline%20x1='5.2'%20y1='18.8'%20x2='7'%20y2='17'/%3E%3Cline%20x1='17'%20y1='7'%20x2='18.8'%20y2='5.2'/%3E%3C/svg%3E") !important;
-    }}
-    /* ON = Dark: navy track with tiny stars scattered on the left */
-    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div {{
-    background:
-      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2044%2022'%3E%3Ccircle%20cx='8'%20cy='6'%20r='1'%20fill='white'/%3E%3Ccircle%20cx='15'%20cy='13'%20r='0.8'%20fill='white'%20opacity='0.75'/%3E%3Ccircle%20cx='11'%20cy='17'%20r='0.6'%20fill='white'%20opacity='0.6'/%3E%3Cpath%20d='M20%205%20l0.5%201.2%201.3%200.3%20-1.3%200.3%20-0.5%201.2%20-0.5%20-1.2%20-1.3%20-0.3%201.3%20-0.3%20z'%20fill='white'/%3E%3C/svg%3E") left center / cover no-repeat,
-      linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
-    border: 1px solid rgba(255,255,255,0.22) !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), 0 0 0 3px rgba(102,126,234,0.18) !important;
-    }}
-    /* ON knob: swap SUN → MOON */
-    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div > div {{
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='%23334155'%3E%3Cpath%20d='M21%2012.8A9%209%200%201%201%2011.2%203%207%207%200%200%200%2021%2012.8z'/%3E%3C/svg%3E") !important;
+    button[data-testid="stBaseButton-segmented_controlActive"],
+    button[data-testid$="segmented_controlActive"],
+    div[data-testid="stSegmentedControl"] button[aria-checked="true"],
+    div[data-testid="stSegmentedControl"] button[kind$="Active"] {{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.35) !important;
     }}
     </style>
 """, unsafe_allow_html=True)
