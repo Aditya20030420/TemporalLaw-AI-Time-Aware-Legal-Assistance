@@ -1251,20 +1251,33 @@ st.set_page_config(
     page_icon=""
 )
 
-# ---- Light / Dark theme control (segmented, reliable across Streamlit versions) ----
-_tcols = st.columns([7, 2])
-with _tcols[1]:
-    try:
-        _sel = st.segmented_control(
-            "Theme",
-            [":material/dark_mode: Dark", ":material/light_mode: Light"],
-            default=":material/dark_mode: Dark",
-            label_visibility="collapsed", key="theme_seg",
-        )
-        theme = "Light" if (_sel and "Light" in _sel) else "Dark"
-    except Exception:
-        theme = st.radio("Theme", ["Dark", "Light"], horizontal=True,
-                         label_visibility="collapsed", key="theme")
+# ---- Light / Dark theme: custom sliding day-night toggle (query-param link) ----
+# Streamlit's native toggle thumb doesn't animate in this build, so we render our
+# own pure-HTML/CSS switch whose knob position we fully control; clicking it links
+# to the same page with ?theme=… flipped.
+_cur = st.query_params.get("theme", "dark")
+theme = "Light" if _cur == "light" else "Dark"
+_is_dark = (theme == "Dark")
+_target = "light" if _is_dark else "dark"
+_SUN = ("<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='#f59e0b' "
+        "stroke-width='1.9' stroke-linecap='round'><circle cx='12' cy='12' r='3.6'/>"
+        "<line x1='12' y1='2.5' x2='12' y2='5'/><line x1='12' y1='19' x2='12' y2='21.5'/>"
+        "<line x1='2.5' y1='12' x2='5' y2='12'/><line x1='19' y1='12' x2='21.5' y2='12'/>"
+        "<line x1='5.2' y1='5.2' x2='7' y2='7'/><line x1='17' y1='17' x2='18.8' y2='18.8'/>"
+        "<line x1='5.2' y1='18.8' x2='7' y2='17'/><line x1='17' y1='7' x2='18.8' y2='5.2'/></svg>")
+_MOON = ("<svg width='14' height='14' viewBox='0 0 24 24' fill='#334155'>"
+         "<path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'/></svg>")
+_stars = ("<span class='dn-stars'></span>" if _is_dark else "")
+st.markdown(
+    f"""
+    <div style="display:flex; justify-content:flex-end;">
+      <a href="?theme={_target}" target="_self" class="daynight {'dark' if _is_dark else 'light'}" title="Switch to {_target} mode">
+        {_stars}<span class="dn-knob">{_MOON if _is_dark else _SUN}</span>
+      </a>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 if theme == "Light":
     bg_gradient     = "linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%)"
@@ -1703,32 +1716,35 @@ st.markdown(f"""
     .metric-card {{ margin-bottom: 1rem; }}
     .section-header {{ font-size: 1.2rem; }}
     }}
-    /* ---- Theme segmented control (Dark | Light), version-agnostic ---- */
-    div[data-testid="stSegmentedControl"] {{ display: flex; justify-content: flex-end; }}
-    div[data-testid="stSegmentedControl"] button,
-    button[data-testid^="stBaseButton-segmented_control"] {{
-    background: transparent !important;
-    color: {text_color} !important;
-    border: 1px solid {border_color} !important;
-    border-radius: 20px !important;
-    padding: 0.28rem 0.9rem !important;
-    font-size: 0.85rem !important;
-    margin: 0 1px !important;
+    /* ---- Custom sliding day/night toggle ---- */
+    a.daynight {{
+    position: relative;
+    display: inline-block;
+    width: 62px; height: 30px;
+    border-radius: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.28);
     }}
-    div[data-testid="stSegmentedControl"] button:hover,
-    button[data-testid^="stBaseButton-segmented_control"]:hover {{
-    background: rgba(102,126,234,0.12) !important;
-    color: {text_color} !important;
-    border-color: #667eea !important;
+    a.daynight.light {{ background: linear-gradient(135deg, #bfe0f5 0%, #9fc9ea 100%); border: 1px solid rgba(0,0,0,0.10); }}
+    a.daynight.dark  {{ background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), 0 0 0 3px rgba(102,126,234,0.16); }}
+    a.daynight .dn-knob {{
+    position: absolute; top: 2px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #ffffff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+    transition: left 0.35s cubic-bezier(0.4,0,0.2,1);
     }}
-    button[data-testid="stBaseButton-segmented_controlActive"],
-    button[data-testid$="segmented_controlActive"],
-    div[data-testid="stSegmentedControl"] button[aria-checked="true"],
-    div[data-testid="stSegmentedControl"] button[kind$="Active"] {{
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    color: #ffffff !important;
-    border-color: transparent !important;
-    box-shadow: 0 2px 8px rgba(102,126,234,0.35) !important;
+    a.daynight.light .dn-knob {{ left: 3px; }}
+    a.daynight.dark  .dn-knob {{ left: 35px; }}
+    a.daynight .dn-stars {{
+    position: absolute; left: 8px; top: 0; width: 22px; height: 100%;
+    background:
+      radial-gradient(circle, #fff 0.9px, transparent 1px) 0 6px/9px 9px,
+      radial-gradient(circle, rgba(255,255,255,0.7) 0.7px, transparent 1px) 4px 14px/11px 11px;
+    background-repeat: no-repeat;
     }}
     </style>
 """, unsafe_allow_html=True)
