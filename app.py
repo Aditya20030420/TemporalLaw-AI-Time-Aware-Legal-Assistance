@@ -35,9 +35,27 @@ OLLAMA_CHAT_MODEL = "qwen2.5:0.5b-instruct"
 # the collection was populated with — see populate_database.py).
 OLLAMA_EMBED_MODEL = "nomic-embed-text"
 OLLAMA_EMBED_URL = "http://localhost:11434/api/embeddings"
-SERPAPI_KEY = os.getenv("SERPAPI_KEY") or ""
+def _get_secret(name):
+    """Read a secret from the environment first, then Streamlit secrets (cloud)."""
+    v = os.getenv(name)
+    if v:
+        return v
+    try:
+        return st.secrets[name]
+    except Exception:
+        return ""
+
+SERPAPI_KEY = _get_secret("SERPAPI_KEY")
 LEGAL_SITES = ["indiankanoon.org", "livelaw.in", "indiacode.nic.in"]
 TOP_K = 5
+
+# Hosted LLM (Groq, OpenAI-compatible) — powers the natural-language Legal
+# Analysis on the deployed app, where Ollama isn't available. Add GROQ_API_KEY
+# to the environment or Streamlit secrets to enable it; without it the app
+# falls back to the deterministic grounded answer.
+GROQ_API_KEY = _get_secret("GROQ_API_KEY")
+GROQ_MODEL   = "llama-3.3-70b-versatile"
+GROQ_URL     = "https://api.groq.com/openai/v1/chat/completions"
 
 # Date the BNS replaced the IPC (1 July 2024), as an int YYYYMMDD.
 # Drives all time-aware IPC-vs-BNS selection.
@@ -1259,6 +1277,130 @@ def generate_answer(query, statutes, web_results, selected_date):
     return res["message"]["content"]
 
 
+@st.cache_data(ttl=3600, show_spinner=False)
+def _groq_chat(system_prompt, user_prompt, max_tokens=650):
+    """Call the Groq (OpenAI-compatible) chat API. Returns "" on any failure so
+    callers can fall back to the deterministic answer. Cached per prompt pair."""
+    if not GROQ_API_KEY:
+        return ""
+    try:
+        r = requests.post(
+            GROQ_URL,
+            headers={"Authorization": f"Bearer {GROQ_API_KEY}",
+                     "Content-Type": "application/json"},
+            json={
+                "model": GROQ_MODEL,
+                "temperature": 0.2,
+                "max_tokens": max_tokens,
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+            },
+            timeout=30,
+        )
+        if r.status_code != 200:
+            return ""
+        return (r.json()["choices"][0]["message"]["content"] or "").strip()
+    except Exception:
+        return ""
+
+
+def _md_to_html(text):
+    """Minimal, safe markdown -> HTML for the Legal Analysis box (which is injected
+    as raw HTML, so markdown wouldn't render on its own). Handles **bold**,
+    bullet lists and paragraphs; everything is HTML-escaped first."""
+    text = str(text or "").strip()
+    if not text:
+        return ""
+    out, in_list = [], False
+    for raw in text.split("\n"):
+        stripped = raw.strip()
+        if not stripped:
+            if in_list:
+                out.append("</ul>"); in_list = False
+            continue
+        esc = html.escape(stripped)
+        esc = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", esc)
+        if re.match(r"^([-*]|\d+\.)\s+", stripped):
+            if not in_list:
+                out.append("<ul style='margin:0.4rem 0 0.4rem 1.1rem; padding:0;'>")
+                in_list = True
+            item = re.sub(r"^([-*]|\d+\.)\s+", "", esc)
+            out.append(f"<li style='margin:0.25rem 0;'>{item}</li>")
+        else:
+            if in_list:
+                out.append("</ul>"); in_list = False
+            out.append(f"<p style='margin:0.55rem 0;'>{esc}</p>")
+    if in_list:
+        out.append("</ul>")
+    return "".join(out)
+
+
+def _statute_context(statutes, web_results=None):
+    """Build a compact, grounded context block from retrieved statutes for the LLM."""
+    blocks = []
+    for s in statutes:
+        vf = s.get("valid_from", "")
+        vu = s.get("valid_until", "9999-12-31")
+        validity = f"{vf} to {'present' if vu == '9999-12-31' else vu}"
+        lines = [
+            f"{s.get('law','')} Section {s.get('section','')} — {s.get('title','')}"
+            f"{(' (' + s.get('category','') + ')') if s.get('category') else ''}",
+            f"Definition: {_short(s.get('content', s.get('text','')), 700)}",
+            f"Punishment: {s.get('punishment','Not specified')}",
+            f"In force: {validity}",
+        ]
+        for label, cp in (("IPC counterpart", s.get("ipc_counterpart")),
+                          ("BNS counterpart", s.get("bns_counterpart"))):
+            if cp:
+                lines.append(f"{label}: Section {cp.get('section')} — {cp.get('punishment','')}")
+        blocks.append("\n".join(lines))
+    for w in (web_results or []):
+        blocks.append(f"Recent source: {w.get('title','')} — {w.get('snippet','')}")
+    return "\n\n---\n\n".join(blocks)
+
+
+def llm_legal_analysis(query, statutes, selected_date, web_results=None):
+    """Natural-language, LLM-written analysis GROUNDED in the retrieved statutes.
+
+    Returns "" if the LLM is unavailable or its output can't be verified against
+    the retrieved sections, so the caller falls back to the deterministic answer.
+    """
+    if not statutes or not GROQ_API_KEY:
+        return ""
+
+    valid_secs = ", ".join(
+        f"{s.get('law','')} {s.get('section','')}" for s in statutes
+    )
+    system_prompt = (
+        "You are an Indian criminal-law assistant. Write a clear, natural-language "
+        "analysis of the user's question using ONLY the provided statutory "
+        "provisions and sources. Do NOT invent section numbers, punishments, or "
+        "facts. Only cite the section numbers that appear in the context. If the "
+        "question compares two offences, explain the key distinctions between them. "
+        "Note the IPC->BNS change where a counterpart is given (BNS replaced the IPC "
+        "with effect from 1 July 2024). "
+        f"The law in force is assessed as of {selected_date.strftime('%d %B %Y')}. "
+        "Be concise (about 120-200 words), use short paragraphs, and where helpful a "
+        "few bullet points. End with a one-line note that this is general "
+        "information, not legal advice."
+    )
+    user_prompt = (
+        f"Question: {query}\n\n"
+        f"Allowed sections to cite: {valid_secs}\n\n"
+        f"Context:\n{_statute_context(statutes, web_results)}"
+    )
+    ans = _groq_chat(system_prompt, user_prompt)
+    if not ans:
+        return ""
+    checked = filter_hallucination(ans, statutes)
+    REJECT = "The answer could not be verified from retrieved legal provisions."
+    if checked and checked.strip() and checked != REJECT:
+        return checked
+    return ""
+
+
 def generate_answer_safe(query, statutes, web_results, selected_date):
     """LLM answer with an automatic fallback to the deterministic grounded answer.
 
@@ -2119,19 +2261,37 @@ if analyze and query:
             )
 
         if statutes:
-            box_html = _prov_block(statutes[0], short=True)
-            # Anything beyond the top result, or a trimmed top result, goes behind "Read more".
-            top_full = re.sub(r"\s+", " ", str(statutes[0].get("content", statutes[0].get("text", "")) or "")).strip()
-            if len(statutes) > 1 or len(top_full) > 200:
+            # Primary content: a natural-language, LLM-written analysis grounded in
+            # the retrieved statutes. Falls back to the concise provision summary
+            # when the LLM is unavailable/unverifiable.
+            llm_answer = llm_legal_analysis(query, statutes, selected_date, web_results)
+            if llm_answer:
+                box_html = (
+                    f"<div style='font-size:0.96rem; line-height:1.7; color:{text_color};'>"
+                    f"{_md_to_html(llm_answer)}</div>"
+                )
+                # The exact statutory text sits behind "Read more" for verification.
                 full_blocks = "".join(_prov_block(s, short=False) for s in statutes)
                 box_html += (
-                    "<details style='margin-top:0.6rem;'>"
-                    "<summary style='cursor:pointer; color:#a0c4ff; font-weight:600; font-size:0.9rem;'>Read more</summary>"
+                    "<details style='margin-top:0.8rem;'>"
+                    "<summary style='cursor:pointer; color:#a0c4ff; font-weight:600; font-size:0.9rem;'>Show statutory text</summary>"
                     f"<div style='margin-top:0.6rem;'>{full_blocks}</div>"
                     "</details>"
                 )
+            else:
+                box_html = _prov_block(statutes[0], short=True)
+                # Anything beyond the top result, or a trimmed top result, goes behind "Read more".
+                top_full = re.sub(r"\s+", " ", str(statutes[0].get("content", statutes[0].get("text", "")) or "")).strip()
+                if len(statutes) > 1 or len(top_full) > 200:
+                    full_blocks = "".join(_prov_block(s, short=False) for s in statutes)
+                    box_html += (
+                        "<details style='margin-top:0.6rem;'>"
+                        "<summary style='cursor:pointer; color:#a0c4ff; font-weight:600; font-size:0.9rem;'>Read more</summary>"
+                        f"<div style='margin-top:0.6rem;'>{full_blocks}</div>"
+                        "</details>"
+                    )
         else:
-            box_html = answer
+            box_html = _md_to_html(answer) or answer
 
         st.markdown('<p class="section-header">Legal Analysis</p>', unsafe_allow_html=True)
         st.markdown(f'<div class="answer-box">{box_html}</div>', unsafe_allow_html=True)

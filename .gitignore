@@ -21,6 +21,7 @@ Thumbs.db
 # Secrets (never commit API keys)
 .env
 *.env
+.streamlit/secrets.toml
 
 # Optional: the vector DB can be regenerated with `python populate_database.py`.
 # Uncomment the next line to keep it out of the repo (saves ~36 MB):

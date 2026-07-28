@@ -50,6 +50,17 @@ pip install -r requirements.txt
 export SERPAPI_KEY=your_key_here      # PowerShell: $env:SERPAPI_KEY="your_key_here"
 ```
 
+- (Optional) A **Groq** API key to power the natural-language **Legal Analysis** on the
+  deployed app (Ollama can't run on Streamlit Cloud). Get a free key at
+  [console.groq.com](https://console.groq.com), then expose it:
+
+```bash
+export GROQ_API_KEY=your_key_here     # PowerShell: $env:GROQ_API_KEY="your_key_here"
+```
+
+  On Streamlit Cloud, add it under **App → Settings → Secrets** as `GROQ_API_KEY = "your_key"`.
+  Without it, the Legal Analysis falls back to the deterministic grounded answer.
+
 ---
 
 ## Running the app
