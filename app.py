@@ -1256,10 +1256,8 @@ _tcols = st.columns([8, 2])
 with _tcols[1]:
     if "theme_toggle" not in st.session_state:
         st.session_state["theme_toggle"] = True  # default: Dark on
-    # Dynamic icon + label: moon/"Dark mode" when on, sun/"Light mode" when off.
-    _is_dark = st.session_state.get("theme_toggle", True)
-    _lbl = ":material/dark_mode: Dark mode" if _is_dark else ":material/light_mode: Light mode"
-    _dark = st.toggle(_lbl, key="theme_toggle")
+    # No text label — the sun/moon icon lives inside the knob (styled via CSS).
+    _dark = st.toggle("Theme", key="theme_toggle", label_visibility="collapsed")
     theme = "Dark" if _dark else "Light"
 
 if theme == "Light":
@@ -1687,33 +1685,32 @@ st.markdown(f"""
     .metric-card {{ margin-bottom: 1rem; }}
     .section-header {{ font-size: 1.2rem; }}
     }}
-    /* ---- Advanced day/night slider toggle ---- */
+    /* ---- Day/Night icon toggle: sun-in-knob on light, moon-in-knob on dark ---- */
     div[data-testid="stCheckbox"] {{ display: flex; justify-content: flex-end; }}
-    /* the track is the direct <div> child of the checkbox label */
+    /* DEFAULT (OFF = Light): soft-blue track — use a gradient (BaseWeb ignores
+       background-color overrides but respects background-image) */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div {{
-    transition: background 0.4s ease, box-shadow 0.4s ease !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.25) !important;
+    background: linear-gradient(135deg, #cbd5e0 0%, #aebccf 100%) !important;
+    transition: background 0.4s ease !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.28) !important;
     }}
-    /* the knob (nested div) — smooth slide + soft glow */
+    /* DEFAULT knob: white circle carrying the SUN icon */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div > div {{
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease !important;
-    box-shadow: 0 0 8px rgba(102,126,234,0.55), 0 1px 3px rgba(0,0,0,0.3) !important;
+    background-color: #ffffff !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 12px 12px !important;
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1) !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35) !important;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23ed8936'%20stroke-width='2.2'%20stroke-linecap='round'%3E%3Ccircle%20cx='12'%20cy='12'%20r='4'/%3E%3Cline%20x1='12'%20y1='2'%20x2='12'%20y2='4'/%3E%3Cline%20x1='12'%20y1='20'%20x2='12'%20y2='22'/%3E%3Cline%20x1='2'%20y1='12'%20x2='4'%20y2='12'/%3E%3Cline%20x1='20'%20y1='12'%20x2='22'%20y2='12'/%3E%3Cline%20x1='4.9'%20y1='4.9'%20x2='6.3'%20y2='6.3'/%3E%3Cline%20x1='17.7'%20y1='17.7'%20x2='19.1'%20y2='19.1'/%3E%3Cline%20x1='4.9'%20y1='19.1'%20x2='6.3'%20y2='17.7'/%3E%3Cline%20x1='17.7'%20y1='6.3'%20x2='19.1'%20y2='4.9'/%3E%3C/svg%3E") !important;
     }}
-    /* ON state: purple gradient track (was Streamlit red) */
+    /* ON = Dark: navy track */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div {{
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    border-color: transparent !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.25), 0 0 12px rgba(118,75,162,0.45) !important;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
     }}
-    /* OFF state (Light): warm amber track */
-    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:not(:checked)) > div {{
-    background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%) !important;
-    border-color: transparent !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15), 0 0 12px rgba(237,137,54,0.4) !important;
-    }}
-    /* the label icon (moon/sun) scales in on change */
-    div[data-testid="stCheckbox"] [data-testid="stIconMaterial"] {{
-    transition: transform 0.3s ease, color 0.3s ease !important;
+    /* ON knob: swap SUN → MOON */
+    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div > div {{
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='%23334155'%3E%3Cpath%20d='M21%2012.8A9%209%200%201%201%2011.2%203%207%207%200%200%200%2021%2012.8z'/%3E%3C/svg%3E") !important;
     }}
     </style>
 """, unsafe_allow_html=True)
