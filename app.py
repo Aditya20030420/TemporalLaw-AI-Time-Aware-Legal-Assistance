@@ -1765,16 +1765,27 @@ with st.form(key="search_form", clear_on_submit=False):
     analyze = st.form_submit_button("Analyze Legal Position", use_container_width=True)
 
 # ---- Clickable example queries (fill + run) ----
+# Each category: (icon, accent colour, [queries])
 _EXAMPLES = {
-    "Criminal Law": ["What is the punishment for murder?", "Punishment for theft", "Provisions for robbery"],
-    "Case Law": ["Sedition law in India", "What is criminal breach of trust?", "Punishment for cheating"],
-    "Legal Research": ["Definition of culpable homicide", "Difference between theft and robbery", "What is defamation?"],
+    "Criminal Law":    ("⚖️", "#a0c4ff", ["What is the punishment for murder?", "Punishment for theft", "Provisions for robbery"]),
+    "Case Law":        ("🏛️", "#f6ad55", ["Sedition law in India", "What is criminal breach of trust?", "Punishment for cheating"]),
+    "Legal Research":  ("🔍", "#48bb78", ["Definition of culpable homicide", "Difference between theft and robbery", "What is defamation?"]),
 }
-with st.expander("💡 Example Queries — click any to run"):
+with st.expander("💡 Example Queries — click any to run", expanded=True):
+    st.markdown(
+        f"<p style='color:{text_secondary}; font-size:0.85rem; margin:0 0 0.6rem 0;'>"
+        "New here? Pick a question below and the assistant will run it instantly.</p>",
+        unsafe_allow_html=True,
+    )
     _ecols = st.columns(len(_EXAMPLES))
-    for _i, (_cat, _qs) in enumerate(_EXAMPLES.items()):
+    for _i, (_cat, (_icon, _accent, _qs)) in enumerate(_EXAMPLES.items()):
         with _ecols[_i]:
-            st.markdown(f"<p style='color:{text_color}; font-weight:600; margin-bottom:0.4rem;'>{_cat}</p>", unsafe_allow_html=True)
+            st.markdown(
+                f"<div style='color:{_accent}; font-weight:700; font-size:0.95rem; "
+                f"margin-bottom:0.6rem; padding-bottom:0.35rem; "
+                f"border-bottom:2px solid {_accent}33;'>{_icon} {_cat}</div>",
+                unsafe_allow_html=True,
+            )
             for _j, _q in enumerate(_qs):
                 if st.button(_q, key=f"ex_{_i}_{_j}", use_container_width=True):
                     st.session_state["_pending_query"] = _q
