@@ -1317,7 +1317,14 @@ st.markdown(f"""
     }}
     .stApp {{
     background: {bg_gradient};
+    transition: background 0.5s ease;
     }}
+    /* Smooth crossfade so switching theme (page reloads via ?theme=) glides in
+       instead of hard-flashing. */
+    section[data-testid="stMain"], div[data-testid="stAppViewContainer"] {{
+    animation: themeFade 0.45s ease;
+    }}
+    @keyframes themeFade {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}
     html {{
     scroll-behavior: smooth;
     }}
