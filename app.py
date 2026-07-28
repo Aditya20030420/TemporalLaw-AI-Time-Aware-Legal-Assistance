@@ -1251,14 +1251,20 @@ st.set_page_config(
     page_icon=""
 )
 
-# ---- Light / Dark theme: custom sliding day-night toggle (query-param link) ----
-# Streamlit's native toggle thumb doesn't animate in this build, so we render our
-# own pure-HTML/CSS switch whose knob position we fully control; clicking it links
-# to the same page with ?theme=… flipped.
-_cur = st.query_params.get("theme", "dark")
-theme = "Light" if _cur == "light" else "Dark"
-_is_dark = (theme == "Dark")
-_target = "light" if _is_dark else "dark"
+# ---- Light / Dark theme (fully client-side: CSS variables + JS, no reload) ----
+# The whole palette is driven by CSS variables toggled via a data-theme attribute
+# on <html>. A tiny JS component flips it (and persists to localStorage) with no
+# page reload, so colours morph and the knob slides smoothly. Python renders the
+# palette as var(--…) so every existing usage picks up the live theme.
+theme = "Dark"  # nominal default; the live theme is decided client-side by JS
+bg_gradient     = "var(--bg-gradient)"
+header_gradient = "var(--header-gradient)"
+card_bg         = "var(--card-bg)"
+text_color      = "var(--text-color)"
+text_secondary  = "var(--text-secondary)"
+border_color    = "var(--border-color)"
+field_value     = "var(--field-value)"
+
 _SUN = ("<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='#f59e0b' "
         "stroke-width='1.9' stroke-linecap='round'><circle cx='12' cy='12' r='3.6'/>"
         "<line x1='12' y1='2.5' x2='12' y2='5'/><line x1='12' y1='19' x2='12' y2='21.5'/>"
@@ -1267,37 +1273,90 @@ _SUN = ("<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='#f5
         "<line x1='5.2' y1='18.8' x2='7' y2='17'/><line x1='17' y1='7' x2='18.8' y2='5.2'/></svg>")
 _MOON = ("<svg width='14' height='14' viewBox='0 0 24 24' fill='#334155'>"
          "<path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'/></svg>")
-_stars = ("<span class='dn-stars'></span>" if _is_dark else "")
 st.markdown(
     f"""
     <div style="display:flex; justify-content:flex-end;">
-      <a href="?theme={_target}" target="_self" class="daynight {'dark' if _is_dark else 'light'}" title="Switch to {_target} mode">
-        {_stars}<span class="dn-knob">{_MOON if _is_dark else _SUN}</span>
-      </a>
+      <div class="daynight" id="dnToggle" title="Toggle theme">
+        <span class="dn-stars"></span>
+        <span class="dn-knob"><span class="dn-sun">{_SUN}</span><span class="dn-moon">{_MOON}</span></span>
+      </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-if theme == "Light":
-    bg_gradient     = "linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%)"
-    header_gradient = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-    card_bg         = "#ffffff"
-    text_color      = "#1a202c"
-    text_secondary  = "#5a6675"
-    border_color    = "#cbd5e0"
-    field_value     = "#2d3748"
-else:
-    bg_gradient     = "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)"
-    header_gradient = "linear-gradient(135deg, #4a5568 0%, #2d3748 100%)"
-    card_bg         = "#2d3748"
-    text_color      = "#e2e8f0"
-    text_secondary  = "#a0aec0"
-    border_color    = "#4a5568"
-    field_value     = "#cbd5e0"
+# JS bridge: reads/persists the theme in localStorage and flips data-theme on the
+# parent document when the toggle is clicked — entirely client-side, no rerun.
+import streamlit.components.v1 as _components
+_components.html(
+    """
+    <script>
+    (function () {
+      const doc = window.parent.document;
+      const root = doc.documentElement;
+      const store = window.parent.localStorage;
+      function apply(t) {
+        root.setAttribute('data-theme', t);
+        const tg = doc.getElementById('dnToggle');
+        if (tg) {
+          tg.classList.toggle('tl-light', t === 'light');
+          // Drive the knob slide via INLINE transform: on this build, CSS class/
+          // attribute rules do not win the cascade for `transform` on this element,
+          // but inline styles do. The CSS `transition: transform` still animates it.
+          const knob = tg.querySelector('.dn-knob');
+          if (knob) knob.style.setProperty('transform',
+            (t === 'light') ? 'translateX(0px)' : 'translateX(32px)', 'important');
+        }
+      }
+      apply(store.getItem('tl_theme') || 'dark');
+      function bind() {
+        const tog = doc.getElementById('dnToggle');
+        if (!tog) { setTimeout(bind, 250); return; }
+        if (tog.dataset.bound) return;
+        tog.dataset.bound = '1';
+        tog.style.cursor = 'pointer';
+        tog.addEventListener('click', function () {
+          const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+          const nxt = cur === 'light' ? 'dark' : 'light';
+          apply(nxt);
+          store.setItem('tl_theme', nxt);
+        });
+      }
+      bind();
+    })();
+    </script>
+    """,
+    height=0,
+)
 
 st.markdown(f"""
     <style>
+    /* ===== Theme palette as CSS variables (dark default, light override) ===== */
+    :root {{
+    --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --header-gradient: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    --card-bg: #2d3748;
+    --text-color: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --border-color: #4a5568;
+    --field-value: #cbd5e0;
+    }}
+    html[data-theme="light"] {{
+    --bg-gradient: linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%);
+    --header-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: #ffffff;
+    --text-color: #1a202c;
+    --text-secondary: #5a6675;
+    --border-color: #cbd5e0;
+    --field-value: #2d3748;
+    }}
+    /* Smoothly morph colours when the theme flips (client-side, no reload) */
+    .stApp, .main, .header-container, .answer-box, .statute-card, .web-card,
+    .metric-card, .empty-state, .field-value, .card-title, .card-text,
+    [class*="counterpart"], .stTextInput input, .stDateInput input {{
+    transition: background 0.45s ease, background-color 0.45s ease,
+                color 0.45s ease, border-color 0.45s ease !important;
+    }}
     /* Hide Streamlit's default top toolbar, menu, decoration bar and footer */
     [data-testid="stHeader"],
     [data-testid="stToolbar"],
@@ -1723,36 +1782,53 @@ st.markdown(f"""
     .metric-card {{ margin-bottom: 1rem; }}
     .section-header {{ font-size: 1.2rem; }}
     }}
-    /* ---- Custom sliding day/night toggle ---- */
-    a.daynight {{
+    /* ---- Custom sliding day/night toggle (state via html[data-theme]) ---- */
+    .daynight {{
     position: relative;
     display: inline-block;
     width: 62px; height: 30px;
     border-radius: 16px;
-    text-decoration: none;
     cursor: pointer;
-    transition: background 0.35s ease, box-shadow 0.35s ease;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.28);
+    /* default = DARK */
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid rgba(255,255,255,0.22);
     }}
-    a.daynight.light {{ background: linear-gradient(135deg, #bfe0f5 0%, #9fc9ea 100%); border: 1px solid rgba(0,0,0,0.10); }}
-    a.daynight.dark  {{ background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), 0 0 0 3px rgba(102,126,234,0.16); }}
-    a.daynight .dn-knob {{
-    position: absolute; top: 2px;
+    .daynight.tl-light {{
+    background: linear-gradient(135deg, #bfe0f5 0%, #9fc9ea 100%);
+    border: 1px solid rgba(0,0,0,0.10);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.20);
+    }}
+    /* Single sliding knob. Keyed off html[data-theme] (the same attribute the
+       whole palette uses and which reliably drives descendant selectors here) —
+       class-based (.tl-light) descendant rules did not win the cascade on this
+       element, but the attribute selector does, so the knob slides smoothly. */
+    .daynight .dn-knob {{
+    position: absolute; top: 2px; left: 3px;
     width: 24px; height: 24px; border-radius: 50%;
     background: #ffffff;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 1px 4px rgba(0,0,0,0.35);
-    transition: left 0.35s cubic-bezier(0.4,0,0.2,1);
+    transform: translateX(32px);   /* dark (default) = slid RIGHT */
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
     }}
-    a.daynight.light .dn-knob {{ left: 3px; }}
-    a.daynight.dark  .dn-knob {{ left: 35px; }}
-    a.daynight .dn-stars {{
+    html[data-theme="light"] .dn-knob {{ transform: translateX(0px); }}   /* light = LEFT */
+    /* sun/moon swap keyed off the same attribute */
+    .daynight .dn-sun {{ display: none; }}
+    .daynight .dn-moon {{ display: block; }}
+    html[data-theme="light"] .daynight .dn-sun {{ display: block; }}
+    html[data-theme="light"] .daynight .dn-moon {{ display: none; }}
+    /* stars: dark only */
+    .daynight .dn-stars {{
     position: absolute; left: 8px; top: 0; width: 22px; height: 100%;
     background:
       radial-gradient(circle, #fff 0.9px, transparent 1px) 0 6px/9px 9px,
       radial-gradient(circle, rgba(255,255,255,0.7) 0.7px, transparent 1px) 4px 14px/11px 11px;
     background-repeat: no-repeat;
+    transition: opacity 0.4s ease;
     }}
+    .daynight.tl-light .dn-stars {{ opacity: 0; }}
     </style>
 """, unsafe_allow_html=True)
 
