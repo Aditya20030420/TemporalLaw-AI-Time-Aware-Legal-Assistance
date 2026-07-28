@@ -1251,21 +1251,13 @@ st.set_page_config(
     page_icon=""
 )
 
-# ---- Light / Dark theme toggle (segmented control with icons) ----
-_tcols = st.columns([7, 2])
+# ---- Light / Dark theme toggle (sliding switch) ----
+_tcols = st.columns([8, 2])
 with _tcols[1]:
-    try:
-        _sel = st.segmented_control(
-            "Theme",
-            [":material/dark_mode: Dark", ":material/light_mode: Light"],
-            default=":material/dark_mode: Dark",
-            label_visibility="collapsed", key="theme_seg",
-        )
-        theme = "Light" if (_sel and "Light" in _sel) else "Dark"
-    except Exception:
-        # Fallback for older Streamlit without segmented_control
-        theme = st.radio("Theme", ["Dark", "Light"], horizontal=True,
-                         label_visibility="collapsed", key="theme")
+    if "theme_toggle" not in st.session_state:
+        st.session_state["theme_toggle"] = True  # default: Dark on
+    _dark = st.toggle(":material/dark_mode: Dark mode", key="theme_toggle")
+    theme = "Dark" if _dark else "Light"
 
 if theme == "Light":
     bg_gradient     = "linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%)"
@@ -1692,34 +1684,12 @@ st.markdown(f"""
     .metric-card {{ margin-bottom: 1rem; }}
     .section-header {{ font-size: 1.2rem; }}
     }}
-    /* ---- Theme segmented control (version-agnostic selectors) ---- */
-    div[data-testid="stSegmentedControl"] {{ display: flex; justify-content: flex-end; }}
-    /* every segment button, whatever Streamlit's internal id */
-    div[data-testid="stSegmentedControl"] button,
-    button[data-testid^="stBaseButton-segmented_control"] {{
-    background: transparent !important;
-    color: {text_color} !important;
-    border: 1px solid {border_color} !important;
-    border-radius: 20px !important;
-    padding: 0.28rem 1rem !important;
-    font-size: 0.85rem !important;
-    margin: 0 1px !important;
-    }}
-    div[data-testid="stSegmentedControl"] button:hover,
-    button[data-testid^="stBaseButton-segmented_control"]:hover {{
-    background: rgba(102,126,234,0.12) !important;
-    color: {text_color} !important;
-    border-color: #667eea !important;
-    }}
-    /* active segment: purple gradient — covers old testid, new testid, and aria state */
-    button[data-testid="stBaseButton-segmented_controlActive"],
-    button[data-testid$="segmented_controlActive"],
-    div[data-testid="stSegmentedControl"] button[aria-checked="true"],
-    div[data-testid="stSegmentedControl"] button[kind$="Active"] {{
+    /* ---- Theme slider toggle: purple track when ON (Streamlit default is red) ---- */
+    div[data-testid="stCheckbox"] {{ display: flex; justify-content: flex-end; }}
+    /* the track is the direct <div> child of the checkbox label; recolour when checked */
+    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div {{
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    color: #ffffff !important;
     border-color: transparent !important;
-    box-shadow: 0 2px 8px rgba(102,126,234,0.35) !important;
     }}
     </style>
 """, unsafe_allow_html=True)
