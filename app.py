@@ -1265,14 +1265,27 @@ text_secondary  = "var(--text-secondary)"
 border_color    = "var(--border-color)"
 field_value     = "var(--field-value)"
 
+# Animated (SMIL) icons — self-contained inline SVG, no external libs.
+# Sun: rays rotate continuously, core gently pulses. Moon: soft rocking sway.
 _SUN = ("<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='#f59e0b' "
-        "stroke-width='1.9' stroke-linecap='round'><circle cx='12' cy='12' r='3.6'/>"
+        "stroke-width='1.9' stroke-linecap='round'>"
+        "<circle cx='12' cy='12' r='3.6'>"
+        "<animate attributeName='r' values='3.6;4.2;3.6' dur='2.4s' "
+        "repeatCount='indefinite'/></circle>"
+        "<g>"
         "<line x1='12' y1='2.5' x2='12' y2='5'/><line x1='12' y1='19' x2='12' y2='21.5'/>"
         "<line x1='2.5' y1='12' x2='5' y2='12'/><line x1='19' y1='12' x2='21.5' y2='12'/>"
         "<line x1='5.2' y1='5.2' x2='7' y2='7'/><line x1='17' y1='17' x2='18.8' y2='18.8'/>"
-        "<line x1='5.2' y1='18.8' x2='7' y2='17'/><line x1='17' y1='7' x2='18.8' y2='5.2'/></svg>")
+        "<line x1='5.2' y1='18.8' x2='7' y2='17'/><line x1='17' y1='7' x2='18.8' y2='5.2'/>"
+        "<animateTransform attributeName='transform' type='rotate' "
+        "from='0 12 12' to='360 12 12' dur='9s' repeatCount='indefinite'/>"
+        "</g></svg>")
 _MOON = ("<svg width='14' height='14' viewBox='0 0 24 24' fill='#334155'>"
-         "<path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'/></svg>")
+         "<path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'>"
+         "<animateTransform attributeName='transform' type='rotate' "
+         "values='-8 12 12;8 12 12;-8 12 12' dur='4s' repeatCount='indefinite' "
+         "calcMode='spline' keyTimes='0;0.5;1' "
+         "keySplines='0.4 0 0.6 1;0.4 0 0.6 1'/></path></svg>")
 st.markdown(
     f"""
     <div style="display:flex; justify-content:flex-end;">
