@@ -1687,26 +1687,28 @@ st.markdown(f"""
     }}
     /* ---- Day/Night icon toggle: sun-in-knob on light, moon-in-knob on dark ---- */
     div[data-testid="stCheckbox"] {{ display: flex; justify-content: flex-end; }}
-    /* DEFAULT (OFF = Light): soft-blue track — use a gradient (BaseWeb ignores
+    /* DEFAULT (OFF = Light): pale sky-blue track — use a gradient (BaseWeb ignores
        background-color overrides but respects background-image) */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div {{
-    background: linear-gradient(135deg, #cbd5e0 0%, #aebccf 100%) !important;
+    background: linear-gradient(135deg, #bfe0f5 0%, #9fc9ea 100%) !important;
     transition: background 0.4s ease !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.28) !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.22) !important;
     }}
-    /* DEFAULT knob: white circle carrying the SUN icon */
+    /* DEFAULT knob: white circle carrying the SUN icon (larger, crisper strokes) */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div > div {{
     background-color: #ffffff !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    background-size: 12px 12px !important;
+    background-size: 14px 14px !important;
     transition: transform 0.35s cubic-bezier(0.4,0,0.2,1) !important;
     box-shadow: 0 1px 4px rgba(0,0,0,0.35) !important;
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23ed8936'%20stroke-width='2.2'%20stroke-linecap='round'%3E%3Ccircle%20cx='12'%20cy='12'%20r='4'/%3E%3Cline%20x1='12'%20y1='2'%20x2='12'%20y2='4'/%3E%3Cline%20x1='12'%20y1='20'%20x2='12'%20y2='22'/%3E%3Cline%20x1='2'%20y1='12'%20x2='4'%20y2='12'/%3E%3Cline%20x1='20'%20y1='12'%20x2='22'%20y2='12'/%3E%3Cline%20x1='4.9'%20y1='4.9'%20x2='6.3'%20y2='6.3'/%3E%3Cline%20x1='17.7'%20y1='17.7'%20x2='19.1'%20y2='19.1'/%3E%3Cline%20x1='4.9'%20y1='19.1'%20x2='6.3'%20y2='17.7'/%3E%3Cline%20x1='17.7'%20y1='6.3'%20x2='19.1'%20y2='4.9'/%3E%3C/svg%3E") !important;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23f59e0b'%20stroke-width='1.8'%20stroke-linecap='round'%3E%3Ccircle%20cx='12'%20cy='12'%20r='3.6'/%3E%3Cline%20x1='12'%20y1='2.5'%20x2='12'%20y2='5'/%3E%3Cline%20x1='12'%20y1='19'%20x2='12'%20y2='21.5'/%3E%3Cline%20x1='2.5'%20y1='12'%20x2='5'%20y2='12'/%3E%3Cline%20x1='19'%20y1='12'%20x2='21.5'%20y2='12'/%3E%3Cline%20x1='5.2'%20y1='5.2'%20x2='7'%20y2='7'/%3E%3Cline%20x1='17'%20y1='17'%20x2='18.8'%20y2='18.8'/%3E%3Cline%20x1='5.2'%20y1='18.8'%20x2='7'%20y2='17'/%3E%3Cline%20x1='17'%20y1='7'%20x2='18.8'%20y2='5.2'/%3E%3C/svg%3E") !important;
     }}
-    /* ON = Dark: navy track */
+    /* ON = Dark: navy track with tiny stars scattered on the left */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div {{
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+    background:
+      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2044%2022'%3E%3Ccircle%20cx='8'%20cy='6'%20r='1'%20fill='white'/%3E%3Ccircle%20cx='15'%20cy='13'%20r='0.8'%20fill='white'%20opacity='0.75'/%3E%3Ccircle%20cx='11'%20cy='17'%20r='0.6'%20fill='white'%20opacity='0.6'/%3E%3Cpath%20d='M20%205%20l0.5%201.2%201.3%200.3%20-1.3%200.3%20-0.5%201.2%20-0.5%20-1.2%20-1.3%20-0.3%201.3%20-0.3%20z'%20fill='white'/%3E%3C/svg%3E") left center / cover no-repeat,
+      linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
     }}
     /* ON knob: swap SUN → MOON */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div > div {{
