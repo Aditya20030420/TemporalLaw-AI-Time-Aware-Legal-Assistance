@@ -1686,13 +1686,19 @@ st.markdown(f"""
     .section-header {{ font-size: 1.2rem; }}
     }}
     /* ---- Day/Night icon toggle: sun-in-knob on light, moon-in-knob on dark ---- */
-    div[data-testid="stCheckbox"] {{ display: flex; justify-content: flex-end; }}
+    div[data-testid="stCheckbox"] {{ display: flex; justify-content: flex-end; padding-top: 0.3rem; }}
+    /* enlarge the whole toggle for visibility (SVG stays crisp) */
+    div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] {{
+    transform: scale(1.45);
+    transform-origin: center right;
+    }}
     /* DEFAULT (OFF = Light): pale sky-blue track — use a gradient (BaseWeb ignores
        background-color overrides but respects background-image) */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div {{
     background: linear-gradient(135deg, #bfe0f5 0%, #9fc9ea 100%) !important;
+    border: 1px solid rgba(0,0,0,0.12) !important;
     transition: background 0.4s ease !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.22) !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.22), 0 0 0 2px rgba(255,255,255,0.06) !important;
     }}
     /* DEFAULT knob: white circle carrying the SUN icon (larger, crisper strokes) */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div > div {{
@@ -1709,6 +1715,8 @@ st.markdown(f"""
     background:
       url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2044%2022'%3E%3Ccircle%20cx='8'%20cy='6'%20r='1'%20fill='white'/%3E%3Ccircle%20cx='15'%20cy='13'%20r='0.8'%20fill='white'%20opacity='0.75'/%3E%3Ccircle%20cx='11'%20cy='17'%20r='0.6'%20fill='white'%20opacity='0.6'/%3E%3Cpath%20d='M20%205%20l0.5%201.2%201.3%200.3%20-1.3%200.3%20-0.5%201.2%20-0.5%20-1.2%20-1.3%20-0.3%201.3%20-0.3%20z'%20fill='white'/%3E%3C/svg%3E") left center / cover no-repeat,
       linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), 0 0 0 3px rgba(102,126,234,0.18) !important;
     }}
     /* ON knob: swap SUN → MOON */
     div[data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div > div {{
