@@ -570,6 +570,55 @@ def rule_based_override(query, statutes, qdate=None):
         ("ipc applicable",    ["section", "§"],             ("BNS", "101"),    None),
     ]
 
+    def _pick(bns_target, ipc_target):
+        if ipc_explicit:
+            return ipc_target or bns_target
+        if bns_explicit:
+            return bns_target or ipc_target
+        if prefer_ipc_by_date:
+            return ipc_target or bns_target
+        return bns_target or ipc_target
+
+    def _resolve(law, sec):
+        # Prefer an already-retrieved statute; else fetch from SECTION_MAP.
+        for s in statutes:
+            if str(s.get("section")) == sec and s.get("law") == law:
+                return s
+        entry = SECTION_MAP.get(f"{law}_{sec}") or SECTION_MAP.get(sec)
+        if entry and entry.get("law") == law:
+            return _make_result(entry, 1.0)
+        return None
+
+    # Comparative queries ("difference between theft and robbery", "theft vs
+    # robbery", "compare X and Y") name TWO distinct offences — return BOTH so
+    # the answer can contrast them, instead of collapsing to the first match.
+    if any(p in query_lower for p in (
+        "difference between", "differences between", " vs ", " vs. ", " versus ",
+        "compare ", "comparison", "distinguish", "differentiate", "distinction between",
+    )):
+        picked = []  # (position_in_query, law, sec)
+        for rule in RULE_MAP:
+            if not isinstance(rule, tuple) or len(rule) < 4:
+                continue
+            keyword, exclude_kws, bns_target, ipc_target = rule
+            pos = query_lower.find(keyword)
+            if pos < 0 or any(ex in query_lower for ex in exclude_kws):
+                continue
+            chosen = _pick(bns_target, ipc_target)
+            if chosen:
+                picked.append((pos, chosen[0], chosen[1]))
+        # De-dup by (law, section), keep the order the offences appear in the query.
+        seen, ordered = set(), []
+        for pos, law, sec in sorted(picked, key=lambda x: x[0]):
+            if (law, sec) in seen:
+                continue
+            seen.add((law, sec))
+            ordered.append((law, sec))
+        if len(ordered) >= 2:
+            out = [r for r in (_resolve(law, sec) for law, sec in ordered) if r]
+            if len(out) >= 2:
+                return out
+
     for rule in RULE_MAP:
         if not isinstance(rule, tuple) or len(rule) < 4:
             continue
