@@ -1495,7 +1495,7 @@ st.markdown(f"""
     color: #0d7a6f;
     text-decoration: underline;
     }}
-    .stButton > button,
+    /* PRIMARY call-to-action: the form's Analyze button (bold gradient) */
     .stFormSubmitButton > button,
     div[data-testid="stFormSubmitButton"] > button {{
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
@@ -1508,12 +1508,29 @@ st.markdown(f"""
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     transition: all 0.3s;
     }}
-    .stButton > button:hover,
     .stFormSubmitButton > button:hover,
     div[data-testid="stFormSubmitButton"] > button:hover {{
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     color: white !important;
+    }}
+    /* SECONDARY actions: date presets & example queries (subtle outlined pills) */
+    .stButton > button {{
+    background: transparent !important;
+    color: {text_color} !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    padding: 0.45rem 0.9rem !important;
+    border-radius: 10px !important;
+    border: 1.5px solid {border_color} !important;
+    box-shadow: none !important;
+    transition: all 0.2s;
+    }}
+    .stButton > button:hover {{
+    border-color: #667eea !important;
+    color: #667eea !important;
+    background: rgba(102, 126, 234, 0.08) !important;
+    transform: translateY(-1px);
     }}
     .stTextInput > div > div > input {{
     border-radius: 8px;
