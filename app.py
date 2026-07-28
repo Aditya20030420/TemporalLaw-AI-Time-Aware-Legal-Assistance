@@ -102,7 +102,7 @@ def _build_full_index(ipc_path, bns_path):
     data = []
     for filepath in [ipc_path, bns_path]:
         if not os.path.exists(filepath):
-            print(f"⚠️ Warning: {filepath} not found, skipping.")
+            print(f"Warning: {filepath} not found, skipping.")
             continue
         with open(filepath, encoding="utf-8") as f:
             data.extend(json.load(f))
@@ -1256,7 +1256,7 @@ _tcols = st.columns([7, 2])
 with _tcols[1]:
     try:
         _sel = st.segmented_control(
-            "Theme", ["🌙 Dark", "☀️ Light"], default="🌙 Dark",
+            "Theme", ["Dark", "Light"], default="Dark",
             label_visibility="collapsed", key="theme_seg",
         )
         theme = "Light" if (_sel and "Light" in _sel) else "Dark"
@@ -1764,26 +1764,60 @@ with st.form(key="search_form", clear_on_submit=False):
 
     analyze = st.form_submit_button("Analyze Legal Position", use_container_width=True)
 
+# ---- Animated inline SVG icons (no emoji) ----
+def _anim_svg(kind, color, size=22):
+    common = (f'width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
+              f'stroke="{color}" stroke-width="1.7" stroke-linecap="round" '
+              f'stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"')
+    if kind == "scales":  # scales of justice — beam gently tilts
+        return (f'<svg {common}><line x1="12" y1="4" x2="12" y2="21"/>'
+                f'<line x1="7" y1="21" x2="17" y2="21"/>'
+                f'<g><animateTransform attributeName="transform" type="rotate" '
+                f'values="-7 12 6;7 12 6;-7 12 6" dur="3s" repeatCount="indefinite"/>'
+                f'<line x1="4" y1="6" x2="20" y2="6"/>'
+                f'<path d="M4 6 L2 11.5 A3 3 0 0 0 6 11.5 Z"/>'
+                f'<path d="M20 6 L18 11.5 A3 3 0 0 0 22 11.5 Z"/></g></svg>')
+    if kind == "building":  # court building — soft glow pulse
+        return (f'<svg {common}><animate attributeName="opacity" values="1;0.55;1" '
+                f'dur="2.6s" repeatCount="indefinite"/>'
+                f'<polygon points="12,3 21,8 3,8"/>'
+                f'<line x1="5" y1="8" x2="5" y2="18"/><line x1="10" y1="8" x2="10" y2="18"/>'
+                f'<line x1="14" y1="8" x2="14" y2="18"/><line x1="19" y1="8" x2="19" y2="18"/>'
+                f'<line x1="3" y1="21" x2="21" y2="21"/></svg>')
+    if kind == "search":  # magnifier — subtle searching wiggle
+        return (f'<svg {common}><g><animateTransform attributeName="transform" '
+                f'type="translate" values="0 0;2 1.5;0 0;-1.5 1;0 0" dur="3s" '
+                f'repeatCount="indefinite"/><circle cx="10" cy="10" r="6"/>'
+                f'<line x1="14.5" y1="14.5" x2="21" y2="21"/></g></svg>')
+    if kind == "warn":  # warning triangle — attention pulse
+        return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
+                f'stroke="{color}" stroke-width="1.8" stroke-linecap="round" '
+                f'stroke-linejoin="round" style="vertical-align:middle;margin-right:5px;">'
+                f'<animate attributeName="opacity" values="1;0.4;1" dur="1.6s" repeatCount="indefinite"/>'
+                f'<path d="M12 3 L22 20 H2 Z"/><line x1="12" y1="9" x2="12" y2="14"/>'
+                f'<circle cx="12" cy="17" r="0.6" fill="{color}"/></svg>')
+    return ""
+
 # ---- Clickable example queries (fill + run) ----
-# Each category: (icon, accent colour, [queries])
+# Each category: (svg-kind, accent colour, [queries])
 _EXAMPLES = {
-    "Criminal Law":    ("⚖️", "#a0c4ff", ["What is the punishment for murder?", "Punishment for theft", "Provisions for robbery"]),
-    "Case Law":        ("🏛️", "#f6ad55", ["Sedition law in India", "What is criminal breach of trust?", "Punishment for cheating"]),
-    "Legal Research":  ("🔍", "#48bb78", ["Definition of culpable homicide", "Difference between theft and robbery", "What is defamation?"]),
+    "Criminal Law":    ("scales",   "#a0c4ff", ["What is the punishment for murder?", "Punishment for theft", "Provisions for robbery"]),
+    "Case Law":        ("building", "#f6ad55", ["Sedition law in India", "What is criminal breach of trust?", "Punishment for cheating"]),
+    "Legal Research":  ("search",   "#48bb78", ["Definition of culpable homicide", "Difference between theft and robbery", "What is defamation?"]),
 }
-with st.expander("💡 Example Queries — click any to run", expanded=True):
+with st.expander("Example Queries — click any to run", expanded=True):
     st.markdown(
         f"<p style='color:{text_secondary}; font-size:0.85rem; margin:0 0 0.6rem 0;'>"
         "New here? Pick a question below and the assistant will run it instantly.</p>",
         unsafe_allow_html=True,
     )
     _ecols = st.columns(len(_EXAMPLES))
-    for _i, (_cat, (_icon, _accent, _qs)) in enumerate(_EXAMPLES.items()):
+    for _i, (_cat, (_kind, _accent, _qs)) in enumerate(_EXAMPLES.items()):
         with _ecols[_i]:
             st.markdown(
                 f"<div style='color:{_accent}; font-weight:700; font-size:0.95rem; "
                 f"margin-bottom:0.6rem; padding-bottom:0.35rem; "
-                f"border-bottom:2px solid {_accent}33;'>{_icon} {_cat}</div>",
+                f"border-bottom:2px solid {_accent}33;'>{_anim_svg(_kind, _accent)}{_cat}</div>",
                 unsafe_allow_html=True,
             )
             for _j, _q in enumerate(_qs):
@@ -1940,7 +1974,7 @@ if analyze and query:
                     note_html = (
                         f'<div style="background:rgba(246,173,85,0.12);border-left:3px solid #f6ad55;'
                         f'border-radius:6px;padding:0.4rem 0.7rem;margin-bottom:0.6rem;'
-                        f'color:#f6ad55;font-size:0.8rem;">⚠ {s.get("note","")}</div>'
+                        f'color:#f6ad55;font-size:0.8rem;">{_anim_svg("warn", "#f6ad55", 14)}{s.get("note","")}</div>'
                         if s.get("note") else ""
                     )
                     st.markdown(f"""
