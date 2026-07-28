@@ -1696,22 +1696,41 @@ st.markdown(f"""
     font-size: 2rem;
     margin-bottom: 0.5rem;
     }}
-    .streamlit-expanderHeader {{
-    background: {card_bg};
+    /* Expander (theme-aware). Newer Streamlit renders <details><summary>; the
+       baked emotion class hardcodes a dark header, so override the real
+       elements with the palette variables. */
+    [data-testid="stExpander"] details {{
+    background: transparent !important;
+    border: none !important;
+    }}
+    [data-testid="stExpander"] summary {{
+    background: {card_bg} !important;
+    color: {text_color} !important;
     border-radius: 8px;
     font-weight: 500;
-    color: {text_color};
     transition: all 0.3s;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     border: 2px solid transparent;
     }}
-    .streamlit-expanderHeader:hover {{
+    [data-testid="stExpander"] summary:hover {{
     border-color: #667eea;
     }}
-    .streamlit-expanderContent {{
-    background: {card_bg};
+    [data-testid="stExpander"] summary * {{ color: {text_color} !important; }}
+    [data-testid="stExpander"] [data-testid="stExpanderDetails"] {{
+    background: {card_bg} !important;
     color: {text_color};
     padding: 1rem;
+    border-radius: 0 0 8px 8px;
+    }}
+    /* legacy fallbacks (older Streamlit) */
+    .streamlit-expanderHeader {{
+    background: {card_bg}; border-radius: 8px; font-weight: 500;
+    color: {text_color}; transition: all 0.3s; padding: 1rem;
+    border: 2px solid transparent;
+    }}
+    .streamlit-expanderHeader:hover {{ border-color: #667eea; }}
+    .streamlit-expanderContent {{
+    background: {card_bg}; color: {text_color}; padding: 1rem;
     border-radius: 0 0 8px 8px;
     }}
     p, span, div {{ color: {text_color}; }}
