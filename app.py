@@ -1764,16 +1764,6 @@ with st.form(key="search_form", clear_on_submit=False):
 
     analyze = st.form_submit_button("Analyze Legal Position", use_container_width=True)
 
-# ---- Quick date presets (showcase the time-awareness) ----
-st.markdown(f"<span style='color:{text_secondary}; font-size:0.85rem;'>Jump to a date:</span>", unsafe_allow_html=True)
-_dp = st.columns([1, 1, 1, 5])
-if _dp[0].button("📅 Today", use_container_width=True):
-    st.session_state["_pending_date"] = datetime.today().date(); st.rerun()
-if _dp[1].button("⏪ Before BNS (2020)", use_container_width=True):
-    st.session_state["_pending_date"] = date(2020, 1, 1); st.rerun()
-if _dp[2].button("⏩ After BNS (2024)", use_container_width=True):
-    st.session_state["_pending_date"] = date(2024, 7, 1); st.rerun()
-
 # ---- Clickable example queries (fill + run) ----
 _EXAMPLES = {
     "Criminal Law": ["What is the punishment for murder?", "Punishment for theft", "Provisions for robbery"],
