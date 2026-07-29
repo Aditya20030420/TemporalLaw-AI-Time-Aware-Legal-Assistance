@@ -1,0 +1,61 @@
+name: Keep Streamlit app awake
+
+# Streamlit Community Cloud sleeps an app after a period without a real browser
+# session. A plain HTTP ping is no longer enough, so this workflow opens the app
+# in a headless browser (which establishes the WebSocket session Streamlit counts
+# as activity) on a schedule.
+
+on:
+  schedule:
+    # Every 10 minutes. GitHub may delay or skip runs under load, and disables
+    # scheduled workflows after 60 days of no repo activity — both are fine here.
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}   # allow manual "Run workflow" from the Actions tab
+
+# If a previous run is still going, don't pile up.
+concurrency:
+  group: keep-awake
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      APP_URL: "https://temporallaw-ai.streamlit.app"
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright (Chromium)
+        run: npm i -g playwright && npx playwright install --with-deps chromium
+
+      - name: Visit app to keep it awake
+        run: |
+          node <<'EOF'
+          const { chromium } = require('playwright');
+          (async () => {
+            const url = process.env.APP_URL;
+            const browser = await chromium.launch();
+            const page = await browser.newPage();
+            try {
+              await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 });
+
+              // If the app is asleep, click the wake-up button.
+              const wake = page.getByRole('button', { name: /get this app back up/i });
+              if (await wake.count()) {
+                console.log('App was asleep — clicking wake-up.');
+                await wake.first().click();
+              }
+
+              // Stay connected long enough for Streamlit to register an active
+              // session (the WebSocket is what keeps it awake).
+              await page.waitForTimeout(45000);
+              console.log('Visited OK:', await page.title());
+            } finally {
+              await browser.close();
+            }
+          })().catch(err => { console.error(err); process.exit(1); });
+          EOF
