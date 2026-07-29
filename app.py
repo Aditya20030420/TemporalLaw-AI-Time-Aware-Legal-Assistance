@@ -1151,9 +1151,18 @@ def _format_counterpart(label, entry, color_class=""):
 # =====================================================
 # GROUNDED ANSWER (NO HALLUCINATION)
 # =====================================================
+def _esc(v):
+    """HTML-escape a value for safe injection into unsafe_allow_html markup.
+    Used for statute/counterpart data fields (defence-in-depth: the dataset is
+    regenerated from external sources, so treat its text as untrusted)."""
+    return html.escape("" if v is None else str(v))
+
 def _short(text, limit=180):
     """Trim long statutory text for the concise Legal Analysis summary,
-    breaking on a sentence/word boundary. Full text still shows in the cards."""
+    breaking on a sentence/word boundary. Full text still shows in the cards.
+
+    NOTE: returns PLAIN text (not HTML-escaped) because it also feeds the LLM
+    prompt context. Escape its result with _esc() at HTML injection points."""
     text = re.sub(r"\s+", " ", str(text or "")).strip()
     if len(text) <= limit:
         return text
@@ -2261,9 +2270,9 @@ if analyze and query:
             body = _short(content, 200) if short else re.sub(r"\s+", " ", str(content or "")).strip()
             return (
                 f"<div style='margin-bottom:0.9rem;'>"
-                f"<div style='font-weight:600; color:{text_color};'>{s.get('title','')}{(' — ' + s.get('category','')) if s.get('category') else ''}</div>"
-                f"<div style='font-size:0.92rem; line-height:1.65; color:{field_value}; margin:0.3rem 0;'>{body}</div>"
-                f"<div style='font-size:0.92rem; color:#fc8181;'><strong>Punishment:</strong> {s.get('punishment','Not specified')}</div>"
+                f"<div style='font-weight:600; color:{text_color};'>{_esc(s.get('title',''))}{(' — ' + _esc(s.get('category',''))) if s.get('category') else ''}</div>"
+                f"<div style='font-size:0.92rem; line-height:1.65; color:{field_value}; margin:0.3rem 0;'>{_esc(body)}</div>"
+                f"<div style='font-size:0.92rem; color:#fc8181;'><strong>Punishment:</strong> {_esc(s.get('punishment','Not specified'))}</div>"
                 f"</div>"
             )
 
@@ -2316,21 +2325,21 @@ if analyze and query:
                         counterpart_html = (
                             '<div class="counterpart-block counterpart-ipc">'
                             '<div class="counterpart-label">Previous Law — IPC</div>'
-                            f'<div class="counterpart-title">Section {ipc.get("section")} — {ipc.get("title","")}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {_short(ipc.get("content",""))}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Punishment</span> {ipc.get("punishment","Not specified")}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Source</span> {ipc.get("source","Indian Penal Code, 1860")}</div>'
+                            f'<div class="counterpart-title">Section {_esc(ipc.get("section"))} — {_esc(ipc.get("title",""))}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {_esc(_short(ipc.get("content","")))}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Punishment</span> {_esc(ipc.get("punishment","Not specified"))}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Source</span> {_esc(ipc.get("source","Indian Penal Code, 1860"))}</div>'
                             '</div>'
                         )
                     if bns:
                         counterpart_html += (
                             '<div class="counterpart-block counterpart-bns">'
                             '<div class="counterpart-label">New Law — BNS</div>'
-                            f'<div class="counterpart-title">Section {bns.get("section")} — {bns.get("title","")}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {_short(bns.get("content",""))}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Punishment</span> {bns.get("punishment","Not specified")}</div>'
-                            f'<div class="counterpart-row"><span class="field-label">In force</span> {bns.get("valid_from","2024-07-01")} onwards</div>'
-                            f'<div class="counterpart-row"><span class="field-label">Source</span> {bns.get("source","Bharatiya Nyaya Sanhita, 2023")}</div>'
+                            f'<div class="counterpart-title">Section {_esc(bns.get("section"))} — {_esc(bns.get("title",""))}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Definition</span> {_esc(_short(bns.get("content","")))}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Punishment</span> {_esc(bns.get("punishment","Not specified"))}</div>'
+                            f'<div class="counterpart-row"><span class="field-label">In force</span> {_esc(bns.get("valid_from","2024-07-01"))} onwards</div>'
+                            f'<div class="counterpart-row"><span class="field-label">Source</span> {_esc(bns.get("source","Bharatiya Nyaya Sanhita, 2023"))}</div>'
                             '</div>'
                         )
                     valid_from  = s.get("valid_from", "")
@@ -2339,29 +2348,29 @@ if analyze and query:
                     note_html = (
                         f'<div style="background:rgba(246,173,85,0.12);border-left:3px solid #f6ad55;'
                         f'border-radius:6px;padding:0.4rem 0.7rem;margin-bottom:0.6rem;'
-                        f'color:#f6ad55;font-size:0.8rem;">{_anim_svg("warn", "#f6ad55", 14)}{s.get("note","")}</div>'
+                        f'color:#f6ad55;font-size:0.8rem;">{_anim_svg("warn", "#f6ad55", 14)}{_esc(s.get("note",""))}</div>'
                         if s.get("note") else ""
                     )
                     st.markdown(f"""
                     <div class="statute-card">
-                    <div class="card-title">{s['title']}</div>
-                    <div class="statute-category">{s.get('category','')}</div>
+                    <div class="card-title">{_esc(s['title'])}</div>
+                    <div class="statute-category">{_esc(s.get('category',''))}</div>
                     {note_html}
                     <div class="statute-field">
                     <span class="field-label">Definition</span>
-                    <span class="field-value">{_short(s.get('content', s.get('text','')))}</span>
+                    <span class="field-value">{_esc(_short(s.get('content', s.get('text',''))))}</span>
                     </div>
                     <div class="statute-field punishment-field">
                     <span class="field-label">Punishment</span>
-                    <span class="field-value punishment-value">{s.get('punishment','Not specified')}</span>
+                    <span class="field-value punishment-value">{_esc(s.get('punishment','Not specified'))}</span>
                     </div>
                     <div class="statute-field">
                     <span class="field-label">Source</span>
-                    <span class="field-value">{s.get('source','')}</span>
+                    <span class="field-value">{_esc(s.get('source',''))}</span>
                     </div>
                     <div class="statute-field">
                     <span class="field-label">In Force</span>
-                    <span class="field-value">{validity_str}</span>
+                    <span class="field-value">{_esc(validity_str)}</span>
                     </div>
                     {counterpart_html}
                     </div>
@@ -2372,7 +2381,7 @@ if analyze and query:
                     if len(_full) > 180:
                         with st.expander("Show full statutory text"):
                             st.markdown(
-                                f"<div style='font-size:0.9rem; line-height:1.65; color:{field_value};'>{_full}</div>",
+                                f"<div style='font-size:0.9rem; line-height:1.65; color:{field_value};'>{_esc(_full)}</div>",
                                 unsafe_allow_html=True,
                             )
             else:
@@ -2441,8 +2450,11 @@ if analyze and query:
     except Exception as e:
         progress_container.empty()
         status_container.empty()
-        st.error(f"An error occurred: {str(e)}")
-        st.info("Try simplifying your query or check your database connection.")
+        # Log full detail server-side; show the user a generic message (avoid
+        # leaking internal paths/stack details in the UI).
+        print(f"[answer_query] error: {e!r}")
+        st.error("Something went wrong while processing your query. Please try again.")
+        st.info("Try simplifying your query or picking a different date.")
 
 elif analyze and not query:
     st.warning("Please enter a legal query to search")
