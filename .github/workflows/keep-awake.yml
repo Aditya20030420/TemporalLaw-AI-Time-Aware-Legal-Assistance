@@ -30,7 +30,10 @@ jobs:
           node-version: "20"
 
       - name: Install Playwright (Chromium)
-        run: npm i -g playwright && npx playwright install --with-deps chromium
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
 
       - name: Visit app to keep it awake
         run: |
