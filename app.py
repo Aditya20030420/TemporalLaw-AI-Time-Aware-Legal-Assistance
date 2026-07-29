@@ -1093,6 +1093,13 @@ def detect_law_changes(query, statutes, selected_date):
 
     return changes
 
+def _safe_url(raw):
+    """Return the URL only if it uses a safe http(s) scheme, else '#'.
+    Blocks javascript:/data:/etc. from external search results ever becoming a
+    clickable href (defence-in-depth against XSS via untrusted link fields)."""
+    u = str(raw or "").strip()
+    return u if re.match(r"^https?://", u, re.IGNORECASE) else "#"
+
 # =====================================================
 # METRICS JSON LOGGER
 # =====================================================
@@ -2225,7 +2232,7 @@ if analyze and query:
             web_links_html = ""
             if law_changes["web_changes"]:
                 web_links_html = "<br>" + "".join(
-                    '<a href="' + html.escape(str(w.get("link", "#")), quote=True) + '" target="_blank" rel="noopener noreferrer" class="law-change-web-link">'
+                    '<a href="' + html.escape(_safe_url(w.get("link", "#")), quote=True) + '" target="_blank" rel="noopener noreferrer" class="law-change-web-link">'
                     + html.escape(str(w.get("title", ""))) + '</a><br>'
                     for w in law_changes["web_changes"]
                 )
@@ -2413,7 +2420,7 @@ if analyze and query:
                     # Escape untrusted external (SerpAPI) fields before rendering as HTML.
                     w_title = html.escape(str(w.get('title', 'Untitled')))
                     w_snippet = html.escape(str(w.get('snippet', 'No description available')))
-                    w_link = html.escape(str(w.get('link', '#')), quote=True)
+                    w_link = html.escape(_safe_url(w.get('link', '#')), quote=True)
                     date_info = html.escape(str(_extract_date_from_text(w)))
                     st.markdown(f"""
                     <div class="web-card">
