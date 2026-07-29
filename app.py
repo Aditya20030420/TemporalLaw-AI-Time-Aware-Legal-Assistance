@@ -256,6 +256,13 @@ def _build_full_index(ipc_path, bns_path):
         "420":  "318",   # Cheating (dishonestly inducing delivery)
         "300":  "101",   # Murder definition
         "299":  "100",   # Culpable homicide definition
+        # Defamation & criminal breach of trust — insert the punishment section
+        # BEFORE the definition section so the reverse (BNS->IPC) lookup prefers
+        # the definition section for the change banner.
+        "500":  "356",   # Defamation (punishment)
+        "499":  "356",   # Defamation (definition) -> BNS 356
+        "406":  "316",   # Criminal breach of trust (punishment)
+        "405":  "316",   # Criminal breach of trust (definition) -> BNS 316
     }
     # Reverse map: BNS → IPC
     KNOWN_REPLACEMENTS_REVERSE = {v: k for k, v in KNOWN_REPLACEMENTS.items()}
@@ -1027,8 +1034,14 @@ def detect_law_changes(query, statutes, selected_date):
     elif bns_sections and not ipc_sections:
         changes["has_changes"] = True
         for bns in bns_sections:
+            # Surface the specific IPC section this BNS provision replaced, if known.
+            ipc_cp  = bns.get("ipc_counterpart") or {}
+            ipc_sec = ipc_cp.get("section")
+            old_label = (
+                f"IPC Section {ipc_sec}" + (f" — {ipc_cp.get('title')}" if ipc_cp.get("title") else "")
+            ) if ipc_sec else ""
             changes["chroma_changes"].append({
-                "type": "new_law", "old": "IPC 1860", "new": bns["title"],
+                "type": "new_law", "old": old_label, "new": bns["title"],
                 "detail": "This provision now falls under the Bharatiya Nyaya Sanhita (BNS), 2023, which replaced the IPC effective 1 July 2024."
             })
     elif ipc_sections and not bns_sections:
@@ -1075,17 +1088,24 @@ def detect_law_changes(query, statutes, selected_date):
     if changes["has_changes"]:
         parts = []
         if changes["chroma_changes"]:
-            replaced_new          = [c["new"] for c in changes["chroma_changes"] if c["type"] == "replaced"]
-            new_law_entries       = [c["new"] for c in changes["chroma_changes"] if c["type"] == "new_law"]
-            possibly_replaced_old = [c["old"] for c in changes["chroma_changes"] if c["type"] == "possibly_replaced"]
-            if replaced_new:
-                sections_str = ", ".join(f"<strong>{s}</strong>" for s in replaced_new)
-                parts.append(f"These provisions have been re-enacted under {sections_str} of the Bharatiya Nyaya Sanhita (BNS), 2023, which replaced the IPC effective 1 July 2024.")
-            if new_law_entries:
-                sections_str = ", ".join(f"<strong>{s}</strong>" for s in new_law_entries)
-                parts.append(f"This provision now falls under {sections_str} of the Bharatiya Nyaya Sanhita (BNS), 2023, which replaced the IPC effective 1 July 2024.")
-            if possibly_replaced_old:
-                sections_str = ", ".join(f"<strong>{s}</strong>" for s in possibly_replaced_old)
+            replaced      = [(c.get("old"), c["new"]) for c in changes["chroma_changes"] if c["type"] == "replaced"]
+            new_law       = [(c.get("old"), c["new"]) for c in changes["chroma_changes"] if c["type"] == "new_law"]
+            possibly_old  = [c["old"] for c in changes["chroma_changes"] if c["type"] == "possibly_replaced"]
+            # Show the IPC -> BNS mapping explicitly (old section AND new section).
+            for old, new in replaced:
+                new_s = f"<strong>{_esc(new)}</strong>"
+                if old:
+                    parts.append(f"<strong>{_esc(old)}</strong> has been re-enacted as {new_s} of the Bharatiya Nyaya Sanhita (BNS), 2023, which replaced the IPC effective 1 July 2024.")
+                else:
+                    parts.append(f"This provision has been re-enacted under {new_s} of the Bharatiya Nyaya Sanhita (BNS), 2023, which replaced the IPC effective 1 July 2024.")
+            for old, new in new_law:
+                new_s = f"<strong>{_esc(new)}</strong>"
+                if old:
+                    parts.append(f"This provision now falls under {new_s} of the Bharatiya Nyaya Sanhita (BNS), 2023 — replacing <strong>{_esc(old)}</strong> — effective 1 July 2024.")
+                else:
+                    parts.append(f"This provision now falls under {new_s} of the Bharatiya Nyaya Sanhita (BNS), 2023, which replaced the IPC effective 1 July 2024.")
+            if possibly_old:
+                sections_str = ", ".join(f"<strong>{_esc(s)}</strong>" for s in possibly_old)
                 parts.append(f"{sections_str} may have been replaced under BNS 2023. A corresponding BNS provision may exist but was not found in the database.")
         if changes["web_changes"]:
             parts.append(f"<strong>{len(changes['web_changes'])} recent web source(s)</strong> report amendments or changes to this law.")
