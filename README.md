@@ -8,6 +8,14 @@ Indian Penal Code (IPC, 1860) was replaced by the Bharatiya Nyaya Sanhita
 user-selected date. It also surfaces the IPC ↔ BNS counterpart for each provision
 and can pull recent judicial/web sources via SerpAPI.
 
+![Time-Aware Legal Assistant — home screen](docs/screenshot.png)
+
+A query returns the law in force on the selected date, a "Law Change Detected" banner
+mapping the old IPC section to its new BNS counterpart, a grounded analysis, and the
+statutory provisions side by side:
+
+![Query result with IPC → BNS law-change banner and provisions](docs/screenshot-result.png)
+
 > **Disclaimer:** This is a research/educational tool, not legal advice.
 
 ---
