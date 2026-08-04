@@ -263,6 +263,47 @@ def _build_full_index(ipc_path, bns_path):
         "499":  "356",   # Defamation (definition) -> BNS 356
         "406":  "316",   # Criminal breach of trust (punishment)
         "405":  "316",   # Criminal breach of trust (definition) -> BNS 316
+        # ---- Broader common IPC -> BNS concordance (titles verified against the
+        # dataset). Where several IPC sections map to one BNS section, the section
+        # we want the BNS->IPC reverse lookup to surface is listed LAST.
+        "120B": "61",    # Criminal conspiracy
+        "143":  "189",   # Unlawful assembly
+        "148":  "191",   # Rioting, armed with deadly weapon
+        "147":  "191",   # Rioting (reverse -> 147)
+        "149":  "190",   # Member of unlawful assembly guilty of common object
+        "153A": "196",   # Promoting enmity between groups
+        "186":  "221",   # Obstructing public servant
+        "188":  "223",   # Disobedience to order of public servant
+        "191":  "227",   # Giving false evidence
+        "193":  "229",   # Punishment for false evidence
+        "201":  "238",   # Causing disappearance of evidence
+        "269":  "271",   # Negligent act likely to spread infection
+        "279":  "281",   # Rash driving on a public way
+        "292":  "294",   # Sale of obscene books
+        "294":  "296",   # Obscene acts and songs
+        "304B": "80",    # Dowry death
+        "306":  "108",   # Abetment of suicide
+        "308":  "110",   # Attempt to commit culpable homicide
+        "309":  "226",   # Attempt to commit suicide
+        "319":  "114",   # Hurt
+        "323":  "115",   # Voluntarily causing hurt
+        "325":  "117",   # Voluntarily causing grievous hurt
+        "354":  "74",    # Assault/criminal force to woman (outrage modesty)
+        "354A": "75",    # Sexual harassment
+        "354D": "78",    # Stalking
+        "366":  "87",    # Kidnapping/abducting woman to compel marriage
+        "359":  "137",   # Kidnapping (reverse -> 359)
+        "384":  "308",   # Extortion
+        "390":  "309",   # Robbery (definition; reverse -> 390)
+        "403":  "314",   # Dishonest misappropriation of property
+        "411":  "317",   # Dishonestly receiving stolen property
+        "448":  "331",   # Punishment for house-trespass
+        "447":  "329",   # Punishment for criminal trespass
+        "441":  "329",   # Criminal trespass (reverse -> 441)
+        "463":  "336",   # Forgery
+        "498A": "85",    # Cruelty by husband or relatives
+        "506":  "351",   # Criminal intimidation (punishment; reverse -> 506)
+        "509":  "79",    # Word/gesture to insult modesty of a woman
     }
     # Reverse map: BNS → IPC
     KNOWN_REPLACEMENTS_REVERSE = {v: k for k, v in KNOWN_REPLACEMENTS.items()}
