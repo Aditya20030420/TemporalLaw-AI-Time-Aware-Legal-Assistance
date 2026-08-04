@@ -304,6 +304,18 @@ def _build_full_index(ipc_path, bns_path):
         "498A": "85",    # Cruelty by husband or relatives
         "506":  "351",   # Criminal intimidation (punishment; reverse -> 506)
         "509":  "79",    # Word/gesture to insult modesty of a woman
+        # Kidnapping / abduction / trafficking family (titles verified; each maps
+        # to a distinct BNS target so the existing 137 reverse lookup is unchanged).
+        "362":  "138",   # Abduction
+        "363A": "139",   # Kidnapping or maiming a minor for begging
+        "364":  "140",   # Kidnapping/abducting in order to murder
+        "365":  "140",   # Kidnapping to secretly/wrongfully confine
+        "367":  "140",   # Kidnapping to subject to grievous hurt/slavery
+        "364A": "140",   # Kidnapping for ransom (reverse -> 364A)
+        "368":  "142",   # Wrongfully concealing/confining a kidnapped person
+        "369":  "97",    # Kidnapping child under ten years to steal
+        "366A": "96",    # Procuration of minor girl
+        "370":  "143",   # Trafficking of persons
     }
     # Reverse map: BNS → IPC
     KNOWN_REPLACEMENTS_REVERSE = {v: k for k, v in KNOWN_REPLACEMENTS.items()}
