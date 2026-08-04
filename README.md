@@ -8,7 +8,14 @@ Indian Penal Code (IPC, 1860) was replaced by the Bharatiya Nyaya Sanhita
 user-selected date. It also surfaces the IPC ↔ BNS counterpart for each provision
 and can pull recent judicial/web sources via SerpAPI.
 
-![Time-Aware Legal Assistant — home screen](docs/screenshot.png)
+The home screen ships with a client-side day/night theme toggle:
+
+<p align="center">
+  <img src="docs/screenshot.png" alt="Home screen (dark mode)" width="49%" />
+  <img src="docs/screenshot-light.png" alt="Home screen (light mode)" width="49%" />
+</p>
+
+<p align="center"><em>Home screen — dark and light themes</em></p>
 
 A query returns the law in force on the selected date, a "Law Change Detected" banner
 mapping the old IPC section to its new BNS counterpart, a grounded analysis, and the

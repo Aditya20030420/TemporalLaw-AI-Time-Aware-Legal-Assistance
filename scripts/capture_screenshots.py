@@ -30,11 +30,14 @@ APP_URL = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8501"
 RESULT_QUERY = "Difference between theft and robbery"
 
 
-def _new_page(pw, width=1280, height=1000):
+def _new_page(pw, theme="dark", width=1280, height=1000):
     browser = pw.chromium.launch()
     page = browser.new_page(
         viewport={"width": width, "height": height}, device_scale_factor=2
     )
+    # The app's theme is client-side, driven by localStorage['tl_theme'] which the
+    # JS bridge reads on load. Seed it before any page script runs.
+    page.add_init_script(f"try{{localStorage.setItem('tl_theme','{theme}')}}catch(e){{}}")
     return browser, page
 
 
@@ -46,21 +49,21 @@ def _wait_ready(page):
     time.sleep(2)  # let fonts/animations settle
 
 
-def capture_home(pw):
-    """Landing page: header, toggle, query input, and example queries."""
-    browser, page = _new_page(pw)
+def capture_home(pw, theme="dark", filename="screenshot.png"):
+    """Landing page (header, toggle, query input, example queries) in one theme."""
+    browser, page = _new_page(pw, theme=theme)
     try:
         _wait_ready(page)
-        out = DOCS / "screenshot.png"
+        out = DOCS / filename
         page.screenshot(path=str(out))
         print("saved", out.relative_to(REPO_ROOT))
     finally:
         browser.close()
 
 
-def capture_result(pw):
+def capture_result(pw, theme="dark", filename="screenshot-result.png"):
     """A query result: Law Change banner, analysis, and statutory provisions."""
-    browser, page = _new_page(pw)
+    browser, page = _new_page(pw, theme=theme)
     try:
         _wait_ready(page)
         page.locator("input[type='text'], textarea").first.fill(RESULT_QUERY)
@@ -76,7 +79,7 @@ def capture_result(pw):
         time.sleep(1)
         page.evaluate("(y) => window.scrollTo(0, y)", int(box["y"]) - 20)
         time.sleep(1)
-        out = DOCS / "screenshot-result.png"
+        out = DOCS / filename
         page.screenshot(path=str(out))
         print("saved", out.relative_to(REPO_ROOT))
     finally:
@@ -86,8 +89,11 @@ def capture_result(pw):
 def main():
     DOCS.mkdir(exist_ok=True)
     with sync_playwright() as pw:
-        capture_home(pw)
-        capture_result(pw)
+        # Home screen in both themes (shown side by side in the README).
+        capture_home(pw, theme="dark", filename="screenshot.png")
+        capture_home(pw, theme="light", filename="screenshot-light.png")
+        # Query result (dark) demonstrating the Law Change banner + provisions.
+        capture_result(pw, theme="dark", filename="screenshot-result.png")
 
 
 if __name__ == "__main__":
