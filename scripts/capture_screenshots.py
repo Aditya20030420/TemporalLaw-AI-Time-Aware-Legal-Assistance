@@ -18,6 +18,7 @@ Usage:
 
 The captures use a 2x device scale for crisp images on high-DPI displays.
 """
+import re
 import sys
 import time
 from pathlib import Path
@@ -41,11 +42,29 @@ def _new_page(pw, theme="dark", width=1280, height=1000):
     return browser, page
 
 
-def _wait_ready(page):
-    page.goto(APP_URL, wait_until="networkidle", timeout=120_000)
-    page.wait_for_selector(
-        "button:has-text('Analyze Legal Position')", timeout=120_000
-    )
+def _wait_ready(page, timeout=300):
+    """Load the app and wait until it's interactive, clicking the Streamlit
+    Community Cloud "get this app back up" sleep screen if/when it appears."""
+    page.goto(APP_URL, wait_until="domcontentloaded", timeout=120_000)
+    ready = "button:has-text('Analyze Legal Position')"
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        try:
+            if page.locator(ready).first.is_visible():
+                break
+        except Exception:
+            pass
+        try:
+            wake = page.get_by_role(
+                "button", name=re.compile("get this app back up", re.I)
+            )
+            if wake.count() > 0:
+                wake.first.click()
+        except Exception:
+            pass
+        time.sleep(3)
+    else:
+        raise TimeoutError("app never became interactive")
     time.sleep(2)  # let fonts/animations settle
 
 
@@ -62,7 +81,8 @@ def capture_home(pw, theme="dark", filename="screenshot.png"):
 
 
 def capture_result(pw, theme="dark", filename="screenshot-result.png"):
-    """A query result: Law Change banner, analysis, and statutory provisions."""
+    """A full query result, top to bottom: header, Law Change banner, analysis,
+    and the statutory-provision / web-source columns."""
     browser, page = _new_page(pw, theme=theme)
     try:
         _wait_ready(page)
@@ -70,14 +90,22 @@ def capture_result(pw, theme="dark", filename="screenshot-result.png"):
         page.get_by_role("button", name="Analyze Legal Position").click()
         page.wait_for_selector(".statute-card", timeout=120_000)
         time.sleep(3)
-        # Frame the results: scroll the Law Change banner to the top of a tall viewport.
-        banner = page.locator(".law-change-banner").first
-        banner.scroll_into_view_if_needed()
+        # Streamlit scrolls an inner container, so `full_page` only sees the
+        # viewport. Grow the viewport very tall so nothing is clipped, measure the
+        # true bottom of the content (the footer), then size the viewport exactly
+        # to it for one clean top-to-bottom shot.
+        page.set_viewport_size({"width": 1280, "height": 5000})
+        time.sleep(2)
+        height = page.evaluate(
+            """() => {
+                const f = document.querySelector('.footer-text');
+                const r = (f || document.body).getBoundingClientRect();
+                return Math.ceil(r.bottom + window.scrollY);
+            }"""
+        )
+        page.set_viewport_size({"width": 1280, "height": min(int(height) + 24, 9000)})
         time.sleep(1)
-        box = banner.bounding_box()
-        page.set_viewport_size({"width": 1280, "height": 1400})
-        time.sleep(1)
-        page.evaluate("(y) => window.scrollTo(0, y)", int(box["y"]) - 20)
+        page.evaluate("() => window.scrollTo(0, 0)")
         time.sleep(1)
         out = DOCS / filename
         page.screenshot(path=str(out))
