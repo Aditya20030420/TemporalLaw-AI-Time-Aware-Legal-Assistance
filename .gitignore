@@ -11,6 +11,7 @@ env/
 *.bak
 *.bak_*
 adapted_eval.json
+metrics_log.json
 
 # OS / editor
 .DS_Store
