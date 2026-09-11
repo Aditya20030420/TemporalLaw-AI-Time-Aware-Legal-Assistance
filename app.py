@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import os
 import html
-from datetime import datetime, date
+from datetime import datetime
 # chromadb and ollama are optional: they power the local nomic/ChromaDB semantic
 # path, but the app runs fine without them (falls back to MiniLM, then TF-IDF).
 # On hosted environments (e.g. Streamlit Cloud) these are typically absent.

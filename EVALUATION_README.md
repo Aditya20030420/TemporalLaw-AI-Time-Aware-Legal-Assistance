@@ -159,7 +159,7 @@ INTERPRETATION:
 
 ## Integration with Existing Code
 
-The evaluation module imports from your existing `legal_assistant_ultimate.py`:
+The evaluation module imports from `app.py`:
 - `chroma_search()` - Retrieves statutes
 - `generate_answer()` - Generates RAG-based answer
 - `serpapi_search()` - Optional web search
@@ -193,9 +193,8 @@ The evaluation module imports from your existing `legal_assistant_ultimate.py`:
 - It will auto-create `test_questions.json` with examples
 - Add your own test cases
 
-### "Could not import from legal_assistant_ultimate"
-- Make sure `evaluation.py` is in the same directory as your main code
-- Check that your main file is named `legal_assistant_ultimate.py`
+### "Could not import from app.py"
+- Make sure `evaluation.py` is in the same directory as `app.py`
 - Adjust import statements if needed
 
 ### Low Temporal Accuracy
